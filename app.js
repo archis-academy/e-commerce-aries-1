@@ -1,4 +1,4 @@
-const button = document.getElementById("btn");
+const button = document.getElementById("btn-lang");
 const dropdown = document.getElementById("hl-dropdown-content");
 
 const searchBarRes = document.getElementById("search-bar-results");
@@ -7,6 +7,8 @@ const userInputField = document.getElementById("user-input");
 let selectedButton = document.getElementById("btn3");
 
 const changingImage = document.getElementById("image1");
+
+let language = document.getElementById("btn-lang");
 
 let images = [
   "/images/carousell-images/iphonee.svg",
@@ -48,9 +50,9 @@ userInputField.addEventListener("focus", () => {
   searchBarRes.classList.add("search-bar-visible");
 });
 
-// userInputField.addEventListener("blur", () => {
-// searchBarRes.classList.remove("search-bar-visible");
-// });
+userInputField.addEventListener("blur", () => {
+  searchBarRes.classList.remove("search-bar-visible");
+});
 
 userInputField.addEventListener("keyup", () => {
   let a = document.getElementById("user-input").value;

@@ -5,10 +5,11 @@
   color: white;
   display: flex;
   padding: 5px;
-  justify-content: center;
+  justify-content: space-around;
 }
 .banner-text {
   display: flex;
+  margin-left: 10%;
   /* HOW TO FIX THIS PROBLEM. I WANT THE BANNER TEXT TO BE IN THE CENTER OF THE SCREEN
   AND I WANT THE LANGUAGE BUTTON TO BE ON FAR RIGHT WITH A RIGHT MARGIN. */
   gap: 20px;
@@ -106,6 +107,7 @@
 #top-bar {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
   margin: 0 9.4%;
   margin-top: 40px;
@@ -155,6 +157,7 @@
 #background-div {
   margin-top: 40px;
   height: 100%;
+  width: 100%;
   background-color: #000000;
   display: flex;
   justify-content: center;
@@ -163,6 +166,7 @@
 
 #image1 {
   max-height: 350px;
+  width: 100%;
 }
 
 #small-buttons {
@@ -171,7 +175,7 @@
   width: fit-content;
   position: absolute;
   bottom: 0px;
-  transform: translateX(400px);
+  transform: translateX(100%);
 }
 
 .carousell-button {
