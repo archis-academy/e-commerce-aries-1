@@ -3,11 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exclusive E-Commerce</title>
-    <link rel="stylesheet" href="styles/shared.css">
-    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="./styles/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+
+    <title>E-commerce Web Site</title>
   </head>
   <body>
-    <script src="app.js"></script>
+    <div class="flash-sales-container">
+      <div class="flash-sales-navigation">
+        <div class="flash-sales">
+          <div class="todays">
+            <div class="todays-warning">
+              <div class="red-warning"></div>
+              <h4>Today's</h4>
+            </div>
+            <h2>Flash Sales</h2>
+          </div>
+        </div>
+        <div class="flash-date">
+          <div class="time-stamp">
+            <p class="stamp">Days</p>
+            <p class="time">03</p>
+          </div>
+          <p class="time-seperator">:</p>
+          <div class="time-stamp">
+            <p class="stamp">Hours</p>
+            <p class="time">23</p>
+          </div>
+          <p class="time-seperator">:</p>
+          <div class="time-stamp">
+            <p class="stamp">Minutes</p>
+            <p class="time">19</p>
+          </div>
+          <p class="time-seperator">:</p>
+          <div class="time-stamp">
+            <p class="stamp">Seconds</p>
+            <p class="time">56</p>
+          </div>
+        </div>
+
+        <div class="navigate">
+         <button class="navigate-btn">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="navigate-btn">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        </div>
+      </div>
+
+      <div class="carousel" id="productsContainer">
+        
+      </div>
+    </div>
+    
+    <script src="./app.js"></script>
   </body>
 </html>
