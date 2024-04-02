@@ -7,7 +7,7 @@ async function getProducts() {
 
   const productText = (value) => {
     const words = value.split(" ");
-    return words.slice(0, 5).join(" ") + "";
+    return words.slice(0, 4).join(" ") + "";
   };
 
   function getStars(rating) {

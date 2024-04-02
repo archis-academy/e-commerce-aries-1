@@ -9,8 +9,9 @@ body {
   overflow-x: hidden;
 }
 .our-container {
-  display: flex;
-  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1300px;
+  margin-top: 20px;
 }
 
 .oursymbol-text {
@@ -23,7 +24,6 @@ body {
   width: 20px;
   height: 40px;
   background-color: rgba(219, 68, 68, 1);
-
   color: white;
   border: none;
   border-radius: 5px;
@@ -36,20 +36,47 @@ body {
 }
 
 .explore-our {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
   font-family: "Inter", serif;
   font-size: 36px;
   line-height: 48px;
   letter-spacing: 4%;
   color: rgba(0, 0, 0, 1);
 }
+.back-next-button {
+  margin-bottom: 30px;
+}
+
+.backbutton {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ccc;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nextbutton {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ccc;
+  font-size: 24px;
+  cursor: pointer;
+}
 
 .explore-div {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, auto);
-  gap: 100px;
-  margin-top: 40px;
   width: 100%;
+  gap: 50px;
+  margin: 0 auto;
+  max-width: 1300px;
 }
 
 .explore-card {
@@ -93,7 +120,9 @@ body {
 .view-button-container {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 50px;
+  cursor: pointer;
+  margin-bottom: 30px;
 }
 
 .view-button {
@@ -106,6 +135,7 @@ body {
   font-size: 16px;
   font-family: "Poppins", serif;
   line-height: 24px;
+  cursor: pointer;
 }
 
 .overlay {
@@ -134,11 +164,30 @@ body {
   cursor: pointer;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .explore-div {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 100px;
     margin-top: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .explore-our {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 30px;
+    font-family: "Inter", serif;
+    font-size: 36px;
+    line-height: 48px;
+    letter-spacing: 4%;
+    color: rgba(0, 0, 0, 1);
+  }
+  .back-next-button {
+    margin-right: 130px;
+    margin-bottom: 30px;
+    margin-left: 0;
   }
 }
