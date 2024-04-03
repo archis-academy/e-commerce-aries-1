@@ -20,13 +20,15 @@ let exploreEnd = 8;
 function renderExploreProducts() {
   const productHTML = allProducts
     .slice(exploreStart, exploreEnd)
-    .map((product, index) => {
+    .map((product) => {
       return `
 <div class="explore-card">
 <div class="image-container card">
 <img class="product-image" src="${product.image}" alt="${product.title}" />
   <div class="overlay">
-            <div class="text" onclick="addToCart(${index})">Add to Cart</div>
+            <div class="text" onclick="addToCart(${
+              product.id
+            })">Add to Cart</div>
         </div>
 </div>
 <h3 class="product-title">  ${productText(product.title)}</h3>
@@ -58,12 +60,27 @@ function getStars(rating) {
   return stars;
 }
 
-function addToCart(index) {
-  const selectedProduct = products[index];
-  let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-  cartItems.push(selectedProduct);
-  localStorage.setItem("cart", JSON.stringify(cartItems));
-  console.log("Ürün sepete eklendi:", selectedProduct);
+function addToCart(productId) {
+  const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
+
+  const isAdded = cartItems.some((product) => product.id === productId);
+
+  if (!isAdded) {
+    const productToAdd = allProducts.find(
+      (product) => product.id === productId
+    );
+
+    localStorage.setItem(
+      "cartProducts",
+      JSON.stringify([...cartItems, productToAdd])
+    );
+  } else {
+    deleteCartProduct(productId);
+  }
+}
+
+function deleteCartProduct(productId) {
+  // filter methodunu kullanarak productId si eşleşen ürünü çıkarıyoruz.
 }
 
 /* SALIH HOMEPAGE EXPLORE PRODUCTS END */
