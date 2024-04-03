@@ -53,7 +53,7 @@
   position: absolute;
   /* absolute olunca responsive design da neden yer degistirmiyor ? 
     sticky ya da fixed kullanmak gerekmez mi?*/
-  z-index: 2;
+  z-index: 3;
   flex-direction: column;
 }
 
@@ -149,13 +149,13 @@
 
 #hero-carousell {
   margin-left: 45px;
+  margin-top: 40px;
   position: relative;
   min-height: 100%;
   flex: 2;
 }
 
 #background-div {
-  margin-top: 40px;
   height: 100%;
   width: 100%;
   background-color: #000000;
@@ -165,7 +165,8 @@
 }
 
 #image1 {
-  max-height: 350px;
+  object-fit: contain;
+  max-height: 300px;
   width: 100%;
 }
 
@@ -174,8 +175,9 @@
   gap: 12px;
   width: fit-content;
   position: absolute;
-  bottom: 0px;
-  transform: translateX(100%);
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 30px;
 }
 
 .carousell-button {
@@ -187,11 +189,11 @@
 }
 
 .active-btn {
-  background-color: #db4444 !important;
-  border: 1px solid rgb(255, 255, 255) !important;
-  border-radius: 50% !important;
-  width: 12px !important;
-  height: 12px !important;
+  background-color: #db4444;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
   /* neden overrite edemiyor ?
   selector specifictiy usundenmi ayni propertyleri tekrardan yazmam gerekti */
 }
