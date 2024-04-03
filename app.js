@@ -1,14 +1,36 @@
 const productsContainer = document.querySelector("#productsContainer")
+
+let allProducts = []
+
 async function getProducts() {
   const response = await fetch("https://fakestoreapi.com/products")
   const products = await response.json()
-  console.log(products)
-
-const trimText = (value, number) => {
-  return value.substring(0, number) + "..."
+  allProducts = products
+  renderTodaysProducts()
 }
-const productHTML = products.slice(5,9).map((product) => {
-  return `
+
+let todaysStart = 0
+let todaysEnd = 4
+
+const todaysRightBtn = document.querySelector("#todaysRightBtn")
+const todaysLeftBtn = document.querySelector("#todaysLeftBtn")
+
+todaysRightBtn.addEventListener("click", () => {
+  todaysNavigationClick("next")
+})
+todaysLeftBtn.addEventListener("click", () => {
+  todaysNavigationClick("prev")
+})
+
+function renderTodaysProducts() {
+  const trimText = (value, number) => {
+    return value.substring(0, number) + "..."
+  }
+
+  const productHTML = allProducts
+    .slice(todaysStart, todaysEnd)
+    .map((product) => {
+      return `
 <div class="product-card">
 <div class="image-container">
 <h4 class="discount-rate">-40%</h4>
@@ -18,30 +40,60 @@ const productHTML = products.slice(5,9).map((product) => {
 <i class="fa-regular fa-eye"></i>
 </div>
 </div>
-<h3 class="product-title">  ${trimText(product.title, 25)}</h3>
+
+<h3 class="product-title">  ${trimText(product.title, 18)}</h3>
 <span class="product-price">${product.price}</span>
-<span>${product.rating.rate}</span> <span>${product.rating.count}</span>
 
-          </div>
+<div class="star-rating">
+<span>${intStarRating(product.rating.rate)}</span> <span>(${product.rating.count})</span>
+
+</div>
+</div>
 `
-})
-.join("")
-console.log(productHTML)
-productsContainer.innerHTML = productHTML
+    })
+    .join("")
+    // const starNumbers = (value) => {
+    // switch (value){
+    //   case 1: 
+    //   return `<i class="fa-regular fa-star"></i>`;
+    //   break
+    //   case 2:
+    //   return `<i class="fa-regular fa-star"></i> 
+    //   <i class="fa-regular fa-star"></i>`
+    //   break
+    //   case 3:
+    //   return `<i class="fa-regular fa-star"></i>
+    //   <i class="fa-regular fa-star"></i>
+    //   <i class="fa-regular fa-star"></i>`
+    //   break
+    //   case 4:
+    //   return `<i class="fa-regular fa-star"></i>
+    //   <i class="fa-regular fa-star"></i>
+    //   <i class="fa-regular fa-star"></i>
+    //   <i class="fa-regular fa-star"></i>`
+    //   break
+    //   case 5:
+    //   return `<i class="fa-regular fa-star"></i>
+    //   <i class="fa-regular fa-star"></i>
+    //   <i class="fa-regular fa-star"></i>
+    //   <i class="fa-regular fa-star"></i>
+    //   <i class="fa-regular fa-star"></i>
+    //   `
+    //   break
+    // }
+  
+    // }
+
+  productsContainer.innerHTML = productHTML
 }
-// const productHTML = (start, end) => {
-//   products.slice(start, end)......
-//  }
-
-
-// let start = 0;
-// let end = 4;
-
-// const nextProducts = () => {
-// start ++; //0 iken 1 olacak
-// end ++; //4 iken 5 olacak
-
-// productsHTML(start, end); // Dolayısıyla artık 1 ve 5 arasındaki ürünleri gösterecek
-// }
+function todaysNavigationClick(direction) {
+  const increment = direction === "next" ? 1 : -1
+  todaysStart += increment
+  todaysEnd += increment
+  renderTodaysProducts()
+}
+const intStarRating = (value) => {
+    return Math.round(value)
+  }
 
 getProducts()
