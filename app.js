@@ -1,30 +1,30 @@
 const productsContainer = document.querySelector("#exploreProducts");
-let products;
+
+let allProducts = [];
+
 async function getProducts() {
   const response = await fetch("https://fakestoreapi.com/products");
-  products = await response.json();
-  console.log(products);
+  const data = await response.json();
+  allProducts = data;
+  renderExploreProducts();
+}
 
-  const productText = (value) => {
-    const words = value.split(" ");
-    return words.slice(0, 4).join(" ") + "";
-  };
+getProducts();
 
-  function getStars(rating) {
-    let stars = ``;
-    for (let i = 0; i < rating.toFixed(0); i++) {
-      stars += `<img src= "images/star1.png" />`;
-    }
-    return stars;
-  }
+/* SALIH HOMEPAGE EXPLORE PRODUCTS */
 
-  const productHTML = products
-    .slice(0, 8)
+/* RENDER FUNCTION */
+let exploreStart = 0;
+let exploreEnd = 8;
+
+function renderExploreProducts() {
+  const productHTML = allProducts
+    .slice(exploreStart, exploreEnd)
     .map((product, index) => {
       return `
 <div class="explore-card">
 <div class="image-container card">
-<img class="product-image" src="${product.image}" alt="${product.title}" /> 
+<img class="product-image" src="${product.image}" alt="${product.title}" />
   <div class="overlay">
             <div class="text" onclick="addToCart(${index})">Add to Cart</div>
         </div>
@@ -39,12 +39,24 @@ async function getProducts() {
 `;
     })
     .join("");
-  console.log(productHTML);
 
   exploreProducts.innerHTML = productHTML;
 }
 
-getProducts();
+/* UTIL FUNCTIONS */
+
+function productText(value) {
+  const words = value.split(" ");
+  return words.slice(0, 4).join(" ") + "";
+}
+
+function getStars(rating) {
+  let stars = ``;
+  for (let i = 0; i < rating.toFixed(0); i++) {
+    stars += `<img src= "images/star1.png" />`;
+  }
+  return stars;
+}
 
 function addToCart(index) {
   const selectedProduct = products[index];
@@ -53,3 +65,5 @@ function addToCart(index) {
   localStorage.setItem("cart", JSON.stringify(cartItems));
   console.log("Ürün sepete eklendi:", selectedProduct);
 }
+
+/* SALIH HOMEPAGE EXPLORE PRODUCTS END */
