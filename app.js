@@ -10,6 +10,18 @@ const changingImage = document.getElementById("image1");
 
 let language = document.getElementById("btn-lang");
 
+const hamburgerBar = document.getElementById("hamburger-bar");
+const hamburgerBarContents = document.getElementById("hamburger-bar-opened");
+const hamburgerBarCloser = document.getElementById("hamburger-bar-closer");
+
+hamburgerBar.addEventListener("click", () => {
+  hamburgerBarContents.classList.add("hamburger-bar-toggled");
+});
+
+hamburgerBarCloser.addEventListener("click", () => {
+  hamburgerBarContents.classList.remove("hamburger-bar-toggled");
+});
+
 let images = [
   "/images/carousell-images/iphonee.svg",
   "/images/carousell-images/gucci-perfume.png",

@@ -109,9 +109,11 @@
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  margin: 0 9.4%;
+  margin: 0 auto;
+  padding: 0 20px;
   margin-top: 40px;
   margin-bottom: 10px;
+  max-width: 1300px;
   position: relative;
   z-index: 2;
 }
@@ -126,6 +128,47 @@
   display: flex;
 }
 
+#left-side {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#hamburger-bar {
+  display: none;
+}
+
+.hamburger-bar-contents {
+  background-color: antiquewhite;
+  color: #000000;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  font-size: 40px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  transform: translateX(-100%);
+}
+
+#hamburger-bar-closer {
+  display: fixed;
+  top: 50px;
+  left: 50px;
+}
+
+#hamburger-list li {
+  display: block;
+}
+
+.hamburger-bar-toggled {
+  transform: translateX(0);
+}
+
 #top-nav-list li {
   display: inline;
   padding-left: 20px;
@@ -133,7 +176,9 @@
 
 #hero {
   display: flex;
-  margin: 0 9.4%;
+  max-width: 1300px;
+  padding: 0 20px;
+  margin: 0 auto;
   position: relative;
 }
 
@@ -151,7 +196,6 @@
   margin-left: 45px;
   margin-top: 40px;
   position: relative;
-  min-height: 100%;
   flex: 2;
 }
 
@@ -196,4 +240,27 @@
   height: 12px;
   /* neden overrite edemiyor ?
   selector specifictiy usundenmi ayni propertyleri tekrardan yazmam gerekti */
+}
+
+@media (max-width: 800px) {
+  /* Make things vertical */
+}
+
+@media (max-width: 1350px) {
+  #middle-side {
+    display: none;
+  }
+
+  #top-bar {
+    justify-content: space-between;
+  }
+
+  #right-side {
+    flex: 2;
+    justify-content: end;
+  }
+
+  #hamburger-bar {
+    display: inline;
+  }
 }
