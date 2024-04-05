@@ -51,19 +51,27 @@ async function getAllProducts() {
 getAllProducts();
 
 button.addEventListener("click", () => {
-  dropdown.classList.add("toggle-div");
+  closeLangButton();
 });
+
+function closeLangButton() {
+  dropdown.classList.toggle("toggle-div");
+}
 
 function changeLang(languageId) {
   // Doesnt work.
   // how to access function caller.
   const language = document.getElementById(languageId);
-  // console.log(language);
+  console.log(language.innerText);
   changingLang = button.innerText;
   button.innerText = language.innerText;
-  // console.log(this.innerText);
+  console.log(button.innerText);
   language.innerText = changingLang;
-  // console.log(changeLang.caller.innerText);
+  console.log(language.innerText);
+  event.preventDefault();
+  // IS this correct ?
+  //
+  closeLangButton();
 }
 
 userInputField.addEventListener("focus", () => {
