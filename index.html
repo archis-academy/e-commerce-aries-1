@@ -26,9 +26,10 @@
 
         <div class="headline-dropdown">
           <button id="btn-lang">
-            English <i id="dropdown-icon" class="fa-solid fa-caret-down"></i>
+            English
+            <i id="dropdown-icon" class="fa-solid fa-caret-down"></i>
           </button>
-          <div id="hl-dropdown-content" class="">
+          <div id="hl-dropdown-content" class="hl-dropdown-content">
             <a type="button" id="l1" onclick="changeLang('l1')" href=""
               >Turkish</a
             >
@@ -46,11 +47,11 @@
     </section>
 
     <section>
-      <div id="top-bar">
-        <div id="left-side">
+      <div class="top-bar">
+        <div class="left-side">
           <div id="hamburger-bar-opened" class="hamburger-bar-contents">
             <i id="hamburger-bar-closer" class="fa-solid fa-bars"></i>
-            <ul id="hamburger-list">
+            <ul class="hamburger-list">
               <li><a href="#">Home</a></li>
               <li><a href="#">Contact</a></li>
               <li><a href="#">About</a></li>
@@ -60,25 +61,30 @@
           <i id="hamburger-bar" class="fa-solid fa-bars"></i>
           <h2>Exclusive</h2>
         </div>
-        <div id="middle-side">
-          <ul id="top-nav-list">
+        <div class="middle-side">
+          <ul class="top-nav-list">
             <li><a href="#">Home</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Sign Up</a></li>
           </ul>
         </div>
-        <div id="right-side">
-          <div id="search-bar">
-            <div id="search-bar-icon">
-              <input id="user-input" type="text" placeholder="Search.." />
+        <div class="right-side">
+          <div class="search-bar">
+            <div class="search-bar-icon">
+              <input
+                id="user-input"
+                class="user-input"
+                type="text"
+                placeholder="Search.."
+              />
               <i
                 class="fa-solid fa-magnifying-glass"
                 style="margin-left: -30px"
                 ;
               ></i>
             </div>
-            <div id="search-bar-results"></div>
+            <div id="search-bar-results" class="search-bar-results"></div>
           </div>
           <a href="wishlist.html"><i class="fa-regular fa-heart"></i></a>
           <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
@@ -90,8 +96,8 @@
     <hr width="100%" />
 
     <section>
-      <div id="hero">
-        <div id="hero-categories">
+      <div class="hero">
+        <div class="hero-categories">
           <h4>Womans Fashion</h4>
           <h4>Mens Fashion</h4>
           <h4>Electronics</h4>
@@ -103,15 +109,16 @@
           <h4>Health & Beauty</h4>
         </div>
         <div class="vl"></div>
-        <div id="hero-carousell">
-          <div id="background-div">
+        <div class="hero-carousell">
+          <div class="background-div">
             <img
               id="image1"
+              class="image1"
               alt=""
               src="/images/carousell-images/iphonee.svg"
             />
           </div>
-          <div id="small-buttons">
+          <div class="small-buttons">
             <button
               onclick="imageChanger(1,'btn1')"
               class="carousell-button"

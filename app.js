@@ -64,7 +64,9 @@ function changeLang(languageId) {
   const language = document.getElementById(languageId);
   console.log(language.innerText);
   changingLang = button.innerText;
-  button.innerText = language.innerText;
+  button.innerHTML =
+    language.innerText +
+    `<i id="dropdown-icon" class="fa-solid fa-caret-down"></i>`;
   console.log(button.innerText);
   language.innerText = changingLang;
   console.log(language.innerText);
