@@ -55,8 +55,17 @@ getAllProducts();
 // searchres.innerHTML = "aasdadsas";
 
 button.addEventListener("click", () => {
-  dropdown.classList.toggle("toggle-div");
+  dropdown.classList.add("toggle-div");
 });
+
+function changeLang() {
+  const language = button.innerText;
+  console.log(language);
+  button.innerText = changeLang.caller.innerText;
+  console.log(this.innerText);
+  changeLang.caller.innerText = language;
+  console.log(changeLang.caller.innerText);
+}
 
 userInputField.addEventListener("focus", () => {
   searchBarRes.classList.add("search-bar-visible");
