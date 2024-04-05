@@ -8,8 +8,6 @@ let selectedButton = document.getElementById("btn3");
 
 const changingImage = document.getElementById("image1");
 
-let language = document.getElementById("btn-lang");
-
 const hamburgerBar = document.getElementById("hamburger-bar");
 const hamburgerBarContents = document.getElementById("hamburger-bar-opened");
 const hamburgerBarCloser = document.getElementById("hamburger-bar-closer");
@@ -52,19 +50,20 @@ async function getAllProducts() {
 
 getAllProducts();
 
-// searchres.innerHTML = "aasdadsas";
-
 button.addEventListener("click", () => {
   dropdown.classList.add("toggle-div");
 });
 
-function changeLang() {
-  const language = button.innerText;
-  console.log(language);
-  button.innerText = changeLang.caller.innerText;
-  console.log(this.innerText);
-  changeLang.caller.innerText = language;
-  console.log(changeLang.caller.innerText);
+function changeLang(languageId) {
+  // Doesnt work.
+  // how to access function caller.
+  const language = document.getElementById(languageId);
+  // console.log(language);
+  changingLang = button.innerText;
+  button.innerText = language.innerText;
+  // console.log(this.innerText);
+  language.innerText = changingLang;
+  // console.log(changeLang.caller.innerText);
 }
 
 userInputField.addEventListener("focus", () => {
