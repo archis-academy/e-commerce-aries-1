@@ -46,10 +46,7 @@
   border: 1px solid black;
   color: black;
   display: flex !important;
-  /* ASK QUESTION - WITHOUT THIS IT DIDNT WORK */
   position: absolute;
-  /* absolute olunca responsive design da neden yer degistirmiyor ? 
-    sticky ya da fixed kullanmak gerekmez mi?*/
   z-index: 3;
   flex-direction: column;
 }
@@ -63,9 +60,17 @@
 .user-input {
   padding: 6px;
   width: 400px;
-  margin-top: 8px;
   font-size: 17px;
   border: 2px black solid;
+}
+
+.search-icon {
+  position: absolute;
+  margin-left: 80px;
+}
+
+.search-icon-invisible {
+  display: none !important;
 }
 
 .search-bar-results {
@@ -97,8 +102,8 @@
 
 .search-bar-visible {
   display: flex !important;
-  margin-top: 50px;
-  position: fixed;
+  margin-top: 41.5px;
+  position: absolute;
 }
 
 .top-bar {
@@ -116,12 +121,15 @@
 }
 
 .right-side {
+  flex: 2;
   display: flex;
+  justify-content: end;
   align-items: center;
   gap: 20px;
 }
 
 .middle-side {
+  margin-left: 50px;
   display: flex;
 }
 
@@ -150,6 +158,7 @@
   top: 0;
   height: 100vh;
   transform: translateX(-100%);
+  z-index: 3;
 }
 
 .hamburger-list li {
@@ -202,6 +211,7 @@
 .image1 {
   object-fit: contain;
   max-height: 300px;
+  min-height: 250px;
   width: 100%;
 }
 
@@ -229,12 +239,35 @@
   border-radius: 50%;
   width: 12px;
   height: 12px;
-  /* neden overrite edemiyor ?
-  selector specifictiy usundenmi ayni propertyleri tekrardan yazmam gerekti */
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
   /* Make things vertical */
+  .hero-categories {
+    border-right: 0px;
+    padding: 10px 0px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  .hero {
+    flex-direction: column;
+    padding: 0;
+  }
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  .right-side {
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+  }
+  .hero-carousell {
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 1350px) {
@@ -248,7 +281,6 @@
 
   .right-side {
     flex: 2;
-    justify-content: end;
   }
 
   #hamburger-bar {

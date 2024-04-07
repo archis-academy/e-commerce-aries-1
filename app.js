@@ -4,6 +4,8 @@ const dropdown = document.getElementById("hl-dropdown-content");
 const searchBarRes = document.getElementById("search-bar-results");
 const userInputField = document.getElementById("user-input");
 
+const searchIcon = document.getElementById("search-icon");
+
 let selectedButton = document.getElementById("btn3");
 
 const changingImage = document.getElementById("image1");
@@ -11,6 +13,21 @@ const changingImage = document.getElementById("image1");
 const hamburgerBar = document.getElementById("hamburger-bar");
 const hamburgerBarContents = document.getElementById("hamburger-bar-opened");
 const hamburgerBarCloser = document.getElementById("hamburger-bar-closer");
+
+let allProducts = [];
+
+async function getAllProducts() {
+  try {
+    const res = await fetch("https://fakestoreapi.com/products");
+    const products = await res.json();
+    allProducts = products;
+  } catch (error) {
+    console.error(error);
+  }
+  console.log(allProducts);
+}
+
+getAllProducts();
 
 hamburgerBar.addEventListener("click", () => {
   hamburgerBarContents.classList.add("hamburger-bar-toggled");
@@ -35,23 +52,11 @@ function imageChanger(i, elementId) {
   selectedButton.classList.add("active-btn");
 }
 
-// const searchres = document.getElementById("abcd");
-let allProducts = [];
-
-async function getAllProducts() {
-  try {
-    const res = await fetch("https://fakestoreapi.com/products");
-    const products = await res.json();
-    allProducts = products;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-getAllProducts();
-
 button.addEventListener("click", () => {
   closeLangButton();
+  //
+  //  1. HOW TO CLOSE THIS WHEN ANYWHERE ELSE IS CLICKED ??
+  //
 });
 
 function closeLangButton() {
@@ -59,17 +64,12 @@ function closeLangButton() {
 }
 
 function changeLang(languageId) {
-  // Doesnt work.
-  // how to access function caller.
   const language = document.getElementById(languageId);
-  console.log(language.innerText);
   changingLang = button.innerText;
   button.innerHTML =
     language.innerText +
     `<i id="dropdown-icon" class="fa-solid fa-caret-down"></i>`;
-  console.log(button.innerText);
   language.innerText = changingLang;
-  console.log(language.innerText);
   event.preventDefault();
   // IS this correct ?
   //
@@ -78,10 +78,12 @@ function changeLang(languageId) {
 
 userInputField.addEventListener("focus", () => {
   searchBarRes.classList.add("search-bar-visible");
+  searchIcon.classList.add("search-icon-invisible");
 });
 
 userInputField.addEventListener("blur", () => {
   searchBarRes.classList.remove("search-bar-visible");
+  searchIcon.classList.remove("search-icon-invisible");
 });
 
 userInputField.addEventListener("keyup", () => {
@@ -116,11 +118,3 @@ function userSearchResults(input) {
   }
   return htmlResult;
 }
-
-//  const searchResultHTML = products.map((product) => {
-//   return `<h5> ${product.title}</h5>`;
-//  });
-
-// searchres.innerHTML = searchResultHTML;
-
-// console.log(searchResultHTML);
