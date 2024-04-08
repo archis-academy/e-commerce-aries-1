@@ -106,18 +106,22 @@ function userSearchResults(input) {
 
 function getFromCart() {
   const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
-  // ADD A FOR LOOOP FOR ADDING THE DIVS, cartItems[i]
-  const htmlProduct = `<div class="product-info">
+  for (let i = 0; i < cartItems.length; i++) {
+    const htmlProduct = `<div class="product-info">
                           <h4>${cartItems[0].title}</h4>
                           <h4>${cartItems[0].price}</h4>
                           <h4>1</h4>
                           <h4>${cartItems[0].price}</h4>
                       </div>`;
-  productsContainer.innerHTML += htmlProduct;
-  // productName.innerText = cartItems[0].title;
-  // productPrice.innerText = cartItems[0].price;
-  console.log("product name:" + cartItems[0].price);
-  console.log("product price" + cartItems[0].price);
+    productsContainer.innerHTML += htmlProduct;
+    // bu neden calismadi ?
+    // const htmlProduct = `<div class="product-info">
+    //                       <h4>${product.title}</h4>
+    //                       <h4>${product.price}</h4>
+    //                       <h4>1</h4>
+    //                       <h4>${product.price}</h4>
+    //                   </div>`;
+  }
 }
 
 getFromCart();
