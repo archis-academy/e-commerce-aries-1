@@ -5,7 +5,10 @@ const secondsE = document.getElementById("special-seconds");
 const specialImage = document.getElementById("special-image");
 const specialContent = document.getElementById("special-item-content");
 
+const addToCartButton = document.getElementById("add-to-cart-button");
+
 let allProducts = [];
+let randomElement = {};
 getAllProducts();
 
 async function getAllProducts() {
@@ -22,8 +25,7 @@ async function getAllProducts() {
 }
 
 function specialContentUpdater() {
-  const randomElement =
-    allProducts[Math.floor(Math.random() * allProducts.length)];
+  randomElement = allProducts[Math.floor(Math.random() * allProducts.length)];
   console.log(randomElement.category);
   specialImage.setAttribute("src", `${randomElement.image}`);
   //   specialContent.innerText = randomElement.title;
@@ -47,4 +49,42 @@ function timer24(timer) {
   }, 1000);
   //   Date ile nasil yapa bilirim ? yarindan bugun u cikarak ?
   //   Date ile bugunun tarihini alip freeze leye biliyormuyuz ?
+}
+
+addToCartButton.onclick = function () {
+  console.log(randomElement.title + "oruj");
+  console.log(randomElement.id + "oruj");
+
+  addToCart(randomElement.id);
+  location.href = "cart.html";
+};
+
+// Method from Salih
+function addToCart(productId) {
+  // function addToCart(productId) {
+  //     const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
+
+  //     const isAdded = cartItems.some((product) => product.id === productId);
+
+  // isAdded methodu error veriyor,  getItem null returnluyor, bos arrayi geciremiyoruz.
+  const nullOrNot = JSON.parse(localStorage.getItem("cartProducts"));
+  const cartItems = [];
+  if (nullOrNot === !null) {
+    cartItems = JSON.parse(localStorage.getItem("cartProducts"));
+  }
+
+  const isAdded = cartItems.some((product) => product.id === productId);
+
+  if (!isAdded) {
+    const productToAdd = allProducts.find(
+      (product) => product.id === productId
+    );
+
+    localStorage.setItem(
+      "cartProducts",
+      JSON.stringify([...cartItems, productToAdd])
+    );
+  } else {
+    // deleteCartProduct(productId);
+  }
 }
