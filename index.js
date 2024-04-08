@@ -66,10 +66,10 @@ addToCartButton.onclick = function () {
 function addToCart(productId) {
   // function addToCart(productId) {
   //     const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
-
   //     const isAdded = cartItems.some((product) => product.id === productId);
 
-  // isAdded methodu error veriyor,  getItem null returnluyor, bos arrayi geciremiyoruz.
+  // isAdded error veriyor-   getItem null returnluyor ,product id null,
+  // bos arrayi cartItems a geciremiyoruz.
   const nullOrNot = JSON.parse(localStorage.getItem("cartProducts"));
   const cartItems = [];
   if (nullOrNot === !null) {
