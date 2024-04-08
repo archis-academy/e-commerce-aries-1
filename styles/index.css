@@ -1,0 +1,15 @@
+.special-item {
+  margin: 0 auto;
+  margin-top: 50px;
+  background-color: black;
+  width: 1300px;
+  color: white;
+  display: flex;
+  padding: 10px;
+}
+.special-img {
+  object-fit: contain;
+  max-height: 300px;
+  min-height: 250px;
+  width: 100%;
+}
