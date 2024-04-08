@@ -3,6 +3,7 @@ const minutesE = document.getElementById("special-minutes");
 const secondsE = document.getElementById("special-seconds");
 
 const specialImage = document.getElementById("special-image");
+const specialContent = document.getElementById("special-item-content");
 
 let allProducts = [];
 getAllProducts();
@@ -16,15 +17,16 @@ async function getAllProducts() {
     console.error(error);
   }
   console.log(allProducts);
-  imageUpdater();
+  specialContentUpdater();
   timer24(86399);
 }
 
-function imageUpdater() {
+function specialContentUpdater() {
   const randomElement =
     allProducts[Math.floor(Math.random() * allProducts.length)];
   console.log(randomElement.category);
   specialImage.setAttribute("src", `${randomElement.image}`);
+  //   specialContent.innerText = randomElement.title;
 }
 
 function timer24(timer) {
@@ -39,8 +41,10 @@ function timer24(timer) {
 
     timer = timer - 1;
     console.log(timer + "  " + hours + ":" + minutes + ":" + seconds);
-    hoursE.innerText = hours;
-    minutesE.innerText = minutes;
-    secondsE.innerText = seconds;
+    hoursE.innerHTML = hours + "<br>hours";
+    minutesE.innerHTML = minutes + "<br>minutes";
+    secondsE.innerHTML = seconds + "<br>seconds";
   }, 1000);
+  //   Date ile nasil yapa bilirim ? yarindan bugun u cikarak ?
+  //   Date ile bugunun tarihini alip freeze leye biliyormuyuz ?
 }
