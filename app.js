@@ -10,6 +10,10 @@ const hamburgerBar = document.getElementById("hamburger-bar");
 const hamburgerBarContents = document.getElementById("hamburger-bar-opened");
 const hamburgerBarCloser = document.getElementById("hamburger-bar-closer");
 
+// const productName = document.getElementById("product-name");
+// const productPrice = document.getElementById("product-price");
+const productsContainer = document.getElementById("items-container");
+
 let allProducts = [];
 
 async function getAllProducts() {
@@ -100,22 +104,21 @@ function userSearchResults(input) {
   return htmlResult;
 }
 
-// Method from Salih
-function addToCart(productId) {
+function getFromCart() {
   const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
-
-  const isAdded = cartItems.some((product) => product.id === productId);
-
-  if (!isAdded) {
-    const productToAdd = allProducts.find(
-      (product) => product.id === productId
-    );
-
-    localStorage.setItem(
-      "cartProducts",
-      JSON.stringify([...cartItems, productToAdd])
-    );
-  } else {
-    deleteCartProduct(productId);
-  }
+  // ADD A FOR LOOOP FOR ADDING THE DIVS, cartItems[i]
+  const htmlProduct = `<div class="product-info">
+                          <h4>${cartItems[0].title}</h4>
+                          <h4>${cartItems[0].price}</h4>
+                          <h4>1</h4>
+                          <h4>${cartItems[0].price}</h4>
+                      </div>`;
+  productsContainer.innerHTML += htmlProduct;
+  // productName.innerText = cartItems[0].title;
+  // productPrice.innerText = cartItems[0].price;
+  console.log("product name:" + cartItems[0].price);
+  console.log("product price" + cartItems[0].price);
 }
+
+getFromCart();
+// Get i nerede kullanacagiz ? Her page refreshlendiginde nasil gelecek ?
