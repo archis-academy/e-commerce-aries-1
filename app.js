@@ -1,32 +1,30 @@
-const productsContainer = document.querySelector("#productsContainer")
+const productsContainer = document.querySelector("#productsContainer");
+// const productsContainer = document.getElementById("#productsContainer");
+// Niçin getelementByid kullanıldığında çalışmıyor.
 
-let allProducts = []
+let allProducts = [];
 
 async function getProducts() {
-  const response = await fetch("https://fakestoreapi.com/products")
-  const products = await response.json()
-  allProducts = products
-  renderTodaysProducts()
+  const response = await fetch("https://fakestoreapi.com/products");
+  const products = await response.json();
+  allProducts = products;
+  renderTodaysProducts();
 }
 
-let todaysStart = 0
-let todaysEnd = 4
+let todaysStart = 0;
+let todaysEnd = 4;
 
-const todaysRightBtn = document.querySelector("#todaysRightBtn")
-const todaysLeftBtn = document.querySelector("#todaysLeftBtn")
+const todaysRightBtn = document.querySelector("#todaysRightBtn");
+const todaysLeftBtn = document.querySelector("#todaysLeftBtn");
 
 todaysRightBtn.addEventListener("click", () => {
-  todaysNavigationClick("next")
-})
+  todaysNavigationClick("next");
+});
 todaysLeftBtn.addEventListener("click", () => {
-  todaysNavigationClick("prev")
-})
+  todaysNavigationClick("prev");
+});
 
 function renderTodaysProducts() {
-  const trimText = (value, number) => {
-    return value.substring(0, number) + "..."
-  }
-
   const productHTML = allProducts
     .slice(todaysStart, todaysEnd)
     .map((product) => {
@@ -36,64 +34,96 @@ function renderTodaysProducts() {
 <h4 class="discount-rate">-40%</h4>
 <img class="product-image" src="${product.image}" alt="${product.title}" /> 
 <div class="icons-container">
-<i class="fa-regular fa-heart"></i>
-<i class="fa-regular fa-eye"></i>
+<button class="wishlist-btn" onclick="addToWishlist(${
+        product.id
+      })"><i class="fa-regular fa-heart"></i></button>
+<button class="add-to-cart-btn" onclick="addToCart(${
+        product.id
+      })"><i class="fa-solid fa-cart-shopping"></i></button>
+
 </div>
 </div>
 
-<h3 class="product-title">  ${trimText(product.title, 18)}</h3>
+<h3 class="product-title">  ${productText(product.title)}</h3>
 <span class="product-price">${product.price}</span>
 
 <div class="star-rating">
-<span>${intStarRating(product.rating.rate)}</span> <span>(${product.rating.count})</span>
+<span>${getStars(product.rating.rate)}</span> <span>(${
+        product.rating.count
+      })</span>
 
 </div>
-</div>
-`
+</div>`;
     })
-    .join("")
-    // const starNumbers = (value) => {
-    // switch (value){
-    //   case 1: 
-    //   return `<i class="fa-regular fa-star"></i>`;
-    //   break
-    //   case 2:
-    //   return `<i class="fa-regular fa-star"></i> 
-    //   <i class="fa-regular fa-star"></i>`
-    //   break
-    //   case 3:
-    //   return `<i class="fa-regular fa-star"></i>
-    //   <i class="fa-regular fa-star"></i>
-    //   <i class="fa-regular fa-star"></i>`
-    //   break
-    //   case 4:
-    //   return `<i class="fa-regular fa-star"></i>
-    //   <i class="fa-regular fa-star"></i>
-    //   <i class="fa-regular fa-star"></i>
-    //   <i class="fa-regular fa-star"></i>`
-    //   break
-    //   case 5:
-    //   return `<i class="fa-regular fa-star"></i>
-    //   <i class="fa-regular fa-star"></i>
-    //   <i class="fa-regular fa-star"></i>
-    //   <i class="fa-regular fa-star"></i>
-    //   <i class="fa-regular fa-star"></i>
-    //   `
-    //   break
-    // }
-  
-    // }
+    .join("");
 
-  productsContainer.innerHTML = productHTML
+  productsContainer.innerHTML = productHTML;
 }
 function todaysNavigationClick(direction) {
-  const increment = direction === "next" ? 1 : -1
-  todaysStart += increment
-  todaysEnd += increment
-  renderTodaysProducts()
+  const increment = direction === "next" ? 1 : -1;
+  todaysStart += increment;
+  todaysEnd += increment;
+
+  if (todaysStart <= 0) {
+    todaysStart = 0;
+    todaysEnd = 4;
+  } else if (todaysEnd >= 20) {
+    todaysStart = 16;
+    todaysEnd = 20;
+  } else {
+    todaysStart += increment;
+    todaysEnd += increment;
+  }
+  renderTodaysProducts();
 }
 const intStarRating = (value) => {
-    return Math.round(value)
+  return Math.round(value);
+};
+function getStars(rating) {
+  let stars = ``;
+  for (let i = 0; i < rating.toFixed(0); i++) {
+    stars += `<i class="fa-solid fa-star"></i>`;
+  }
+  return stars;
+}
+
+function productText(value) {
+  const words = value.split(" ");
+  return words.slice(0, 4).join(" ") + "";
+}
+
+function addToWishlist(productId) {
+  const wishlistProducts =
+    JSON.parse(localStorage.getItem("wishlistProducts")) || [];
+
+  const isWishlisted = wishlistProducts.find(
+    (product) => product.id === productId
+  );
+
+  if (!isWishlisted) {
+    const productToAdd = allProducts.find(
+      (product) => product.id === productId
+    );
+    localStorage.setItem(
+      "wishlistProducts",
+      JSON.stringify([...wishlistProducts, productToAdd])
+    );
+    alert("Ürün favorilere eklendi");
+  } else {
+    deleteFromWishlist(productId);
+    alert("Ürün favorilerden silindi");
   }
 
-getProducts()
+  function deleteFromWishlist(productId) {
+    const wishlistProducts =
+      JSON.parse(localStorage.getItem("wishlistProducts")) || [];
+
+    const updatedWishlist = wishlistProducts.filter(
+      (product) => product.id !== productId
+    );
+
+    localStorage.setItem("wishlistProducts", JSON.stringify(updatedWishlist));
+  }
+}
+
+getProducts();
