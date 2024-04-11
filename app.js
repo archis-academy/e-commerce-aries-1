@@ -10,9 +10,12 @@ const hamburgerBar = document.getElementById("hamburger-bar");
 const hamburgerBarContents = document.getElementById("hamburger-bar-opened");
 const hamburgerBarCloser = document.getElementById("hamburger-bar-closer");
 
-// const productName = document.getElementById("product-name");
-// const productPrice = document.getElementById("product-price");
-const productsContainer = document.getElementById("items-container");
+const productsContainer = document.getElementById("product-info-container");
+// const itemQuantity = document.getElementsByClassName("item-quantity");
+let itemQuantity = 1;
+let totalPrice = "";
+
+// NEDEN GET ELEMENT BY CLASS NAME CALISIYOR , AMM GET ELEMENT BY ID CALISMIYOR ??
 
 let allProducts = [];
 
@@ -25,9 +28,45 @@ async function getAllProducts() {
     console.error(error);
   }
   console.log(allProducts);
+  getFromCart();
 }
 
 getAllProducts();
+
+function getFromCart() {
+  const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
+  for (let i = 0; i < cartItems.length; i++) {
+    let htmlProduct = "";
+    htmlProduct += `<div class="product-info">
+                          <h4>${cartItems[0].title}</h4>
+                          <h4>${cartItems[0].price}</h4>
+                          <div class="quantity-button">
+                            <div class="quantity-button-contents">
+                            <h4 id="item-quantity">1</h4>
+                            <div class="button-div">
+                              <button onClick="quantityPlus(${cartItems[0].price})" class="button-up" id="button-up"></button>
+                              <button onClick="quantityMinus(${cartItems[0].price})" class="button-down" id="button-down"></button>
+                            </div>
+                            </div>
+                          </div>
+                          <h4 id="subtotal-price">${cartItems[0].price}$</h4>
+                      </div>`;
+    productsContainer.innerHTML += htmlProduct;
+    itemQuantity = document.getElementById("item-quantity");
+    totalPrice = document.getElementById("subtotal-price");
+    // BU METHODDA EKLEMEM GEREKTI ? DOGRU MU ?
+    // yazdigimiz html elemente ulasamadim id ile.
+
+    // bu neden calismadi ?
+    //for(product in cartItems){
+    // const htmlProduct = `<div class="product-info">
+    //                       <h4>${product.title}</h4>
+    //                       <h4>${product.price}</h4>
+    //                       <h4>1</h4>
+    //                       <h4>${product.price}</h4>
+    //                   </div>`;}
+  }
+}
 
 hamburgerBar.addEventListener("click", () => {
   hamburgerBarContents.classList.add("hamburger-bar-toggled");
@@ -76,6 +115,23 @@ userInputField.addEventListener("keyup", () => {
   searchBarRes.innerHTML = userSearchResults(a);
 });
 
+function quantityPlus(price) {
+  let quantity = parseInt(itemQuantity.innerText, 10);
+  quantity++;
+  itemQuantity.innerText = quantity;
+  totalPrice.innerText = (price * quantity).toFixed(2) + "$";
+  console.log(price * quantity);
+}
+
+function quantityMinus(price) {
+  let quantity = parseInt(itemQuantity.innerText, 10);
+  if (quantity > 1) {
+    quantity--;
+    itemQuantity.innerText = quantity;
+    totalPrice.innerText = (price * quantity).toFixed(2) + "$";
+  }
+}
+
 function userSearchResults(input) {
   let results = new Array();
   if (input.length == 0) {
@@ -104,25 +160,4 @@ function userSearchResults(input) {
   return htmlResult;
 }
 
-function getFromCart() {
-  const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
-  for (let i = 0; i < cartItems.length; i++) {
-    const htmlProduct = `<div class="product-info">
-                          <h4>${cartItems[0].title}</h4>
-                          <h4>${cartItems[0].price}</h4>
-                          <h4>1</h4>
-                          <h4>${cartItems[0].price}</h4>
-                      </div>`;
-    productsContainer.innerHTML += htmlProduct;
-    // bu neden calismadi ?
-    // const htmlProduct = `<div class="product-info">
-    //                       <h4>${product.title}</h4>
-    //                       <h4>${product.price}</h4>
-    //                       <h4>1</h4>
-    //                       <h4>${product.price}</h4>
-    //                   </div>`;
-  }
-}
-
-getFromCart();
 // Get i nerede kullanacagiz ? Her page refreshlendiginde nasil gelecek ?
