@@ -266,6 +266,12 @@
   overflow: hidden;
 }
 
+.item-title-h4 {
+  /* FIND A BETTER SOLUTION FOR LINE WIDTH ! */
+  height: 6ch;
+  line-height: 2ch;
+}
+
 @media (max-width: 700px) {
   .top-bar {
     flex-direction: column;

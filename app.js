@@ -38,7 +38,7 @@ function getFromCart() {
   for (let i = 0; i < cartItems.length; i++) {
     let htmlProduct = "";
     htmlProduct += `<div class="product-info">
-                          <h4>${cartItems[0].title}</h4>
+                          <h4 class="item-title-h4">${cartItems[0].title}</h4>
                           <h4>${cartItems[0].price}</h4>
                           <div class="quantity-button">
                             <div class="quantity-button-contents">
