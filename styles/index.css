@@ -263,10 +263,26 @@
   .right-side {
     justify-content: center;
     align-self: center;
-    width: 100%;
+    /* width: 100%; remove from cart page*/
   }
   .hero-carousell {
     margin-left: 0;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .search-bar-icon {
+    min-width: 100%;
+  }
+
+  .user-input {
+    width: 100%;
+  }
+
+  .right-side {
+    width: 80vw;
   }
 }
 
