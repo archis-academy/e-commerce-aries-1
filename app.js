@@ -11,9 +11,21 @@ const hamburgerBarContents = document.getElementById("hamburger-bar-opened");
 const hamburgerBarCloser = document.getElementById("hamburger-bar-closer");
 
 const productsContainer = document.getElementById("product-info-container");
+const cartSubtotal = document.getElementById("total-subtotal");
+const cartSubtotalDiscounted = document.getElementById(
+  "total-subtotal-discounted"
+);
+
+const couponButton = document.getElementById("coupon-button");
+
+let cartItems = [];
+const totalCost = [];
 // const itemQuantity = document.getElementsByClassName("item-quantity");
 let itemQuantity = 1;
 let totalPrice = "";
+let discounteState = false;
+
+let coupons = ["NEWYEAR2024", "EIDMUBARAK", "BLACKFRIDAY"];
 
 // NEDEN GET ELEMENT BY CLASS NAME CALISIYOR , AMM GET ELEMENT BY ID CALISMIYOR ??
 
@@ -33,27 +45,62 @@ async function getAllProducts() {
 
 getAllProducts();
 
+couponButton.addEventListener("click", () => {
+  let couponCode = document.getElementById("coupon-input").value;
+  checkOutCoupon(couponCode);
+});
+
+function checkOutCoupon(code) {
+  if (discounteState) {
+    return;
+    //function u durdurma boyle mi ? Q4
+  }
+
+  for (coupon in coupons) {
+    if (coupons[coupon].toLowerCase() === code.toLowerCase()) {
+      discounteState = true;
+    }
+  }
+
+  if (discounteState) {
+    cartSubtotalDiscounted.innerText =
+      (
+        parseFloat(cartSubtotalDiscounted.innerText.replace("$", "")) * 0.6
+      ).toFixed(2) + "$";
+  } else {
+    // ADD TEXT TO STATE ITS INVALID.
+  }
+}
+
 function getFromCart() {
-  const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
+  cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
+  cartItems.push(allProducts[3]);
+  cartItems.push(allProducts[4]);
+  cartItems.push(allProducts[5]);
+
   for (let i = 0; i < cartItems.length; i++) {
     let htmlProduct = "";
     htmlProduct += `<div class="product-info">
-                          <h4 class="item-title-h4">${cartItems[0].title}</h4>
-                          <h4>${cartItems[0].price}</h4>
+                          <div class="image-and-title">
+                          <img class="item-image" src="${cartItems[i].image}">
+                          <h4 class="item-title-h4">${cartItems[i].title}</h4>
+                          </div>
+                          <h4>${cartItems[i].price}$</h4>
                           <div class="quantity-button">
                             <div class="quantity-button-contents">
-                            <h4 id="item-quantity">1</h4>
+                            <h4 id="item-quantity-${i}">1</h4>
                             <div class="button-div">
-                              <button onClick="quantityPlus(${cartItems[0].price})" class="button-up" id="button-up"></button>
-                              <button onClick="quantityMinus(${cartItems[0].price})" class="button-down" id="button-down"></button>
+                              <button onClick="quantityPlus(${cartItems[i].price}, ${i}
+                              )" class="button-up" id="button-up"></button>
+                              <button onClick="quantityMinus(${cartItems[i].price}, ${i}
+                              )" class="button-down" id="button-down"></button>
                             </div>
                             </div>
                           </div>
-                          <h4 id="subtotal-price">${cartItems[0].price}$</h4>
+                          <h4 id="subtotal-price-${i}">${cartItems[i].price}$</h4>
                       </div>`;
+    // ID YE INDEXI EKLEYEREK CALISTIRIYORUM BU DOGRU MU ?? Q2 Q2
     productsContainer.innerHTML += htmlProduct;
-    itemQuantity = document.getElementById("item-quantity");
-    totalPrice = document.getElementById("subtotal-price");
     // BU METHODDA EKLEMEM GEREKTI ? DOGRU MU ?
     // yazdigimiz html elemente ulasamadim id ile.
 
@@ -65,7 +112,9 @@ function getFromCart() {
     //                       <h4>1</h4>
     //                       <h4>${product.price}</h4>
     //                   </div>`;}
+    totalCost[i] = cartItems[i].price;
   }
+  updateSubtotal();
 }
 
 hamburgerBar.addEventListener("click", () => {
@@ -115,21 +164,63 @@ userInputField.addEventListener("keyup", () => {
   searchBarRes.innerHTML = userSearchResults(a);
 });
 
-function quantityPlus(price) {
+function quantityPlus(price, index) {
+  itemQuantity = document.getElementById(`item-quantity-${index}`);
+  totalPrice = document.getElementById(`subtotal-price-${index}`);
+  console.log(`subtotal-price-${index}`);
   let quantity = parseInt(itemQuantity.innerText, 10);
   quantity++;
   itemQuantity.innerText = quantity;
-  totalPrice.innerText = (price * quantity).toFixed(2) + "$";
-  console.log(price * quantity);
+  let finalPrice = (price * quantity).toFixed(2);
+  totalPrice.innerText = finalPrice + "$";
+
+  totalCost[index] = parseFloat(finalPrice);
+  // neden parse int yapmam gerekiyor ?? Q333
+
+  console.log(finalPrice);
+  updateSubtotal();
 }
 
-function quantityMinus(price) {
+function quantityMinus(price, index) {
+  itemQuantity = document.getElementById(`item-quantity-${index}`);
+  totalPrice = document.getElementById(`subtotal-price-${index}`);
   let quantity = parseInt(itemQuantity.innerText, 10);
+
   if (quantity > 1) {
     quantity--;
     itemQuantity.innerText = quantity;
-    totalPrice.innerText = (price * quantity).toFixed(2) + "$";
+
+    let finalPrice = (price * quantity).toFixed(2);
+    totalPrice.innerText = finalPrice + "$";
+
+    totalCost[index] = parseFloat(finalPrice);
   }
+
+  updateSubtotal();
+}
+
+function updateSubtotal() {
+  let cost = 0;
+  for (let i = 0; i < cartItems.length; i++) {
+    cost += totalCost[i];
+    console.log(cost);
+  }
+  cartSubtotal.innerText = cost + "$";
+  cartSubtotalDiscounted.innerText = cost + "$";
+}
+
+function updateCart() {
+  productsContainer.innerHTML = "";
+  getFromCart();
+
+  //  HTML ICINDEKI BU KISIM NEDEN SILINMIYOR ? Q44444
+
+  //<div class="product-info">
+  //   <h4 id="title">Product</h4>
+  //   <h4>Price</h4>
+  //   <h4>Quantity</h4>
+  //   <h4>Subtotal</h4>
+  // </div>
 }
 
 function userSearchResults(input) {
