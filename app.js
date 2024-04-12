@@ -206,7 +206,12 @@ function updateSubtotal() {
     console.log(cost);
   }
   cartSubtotal.innerText = cost + "$";
-  cartSubtotalDiscounted.innerText = cost + "$";
+
+  if (discounteState) {
+    cartSubtotalDiscounted.innerText = (cost * 0.6).toFixed(2) + "$";
+  } else {
+    cartSubtotalDiscounted.innerText = cost + "$";
+  }
 }
 
 function updateCart() {

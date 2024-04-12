@@ -110,26 +110,37 @@
           <a href="index.html">
             <button>Return to shop</button>
           </a>
-          <button onclick="updateCart()" >Update Cart</button>
+          <button onclick="updateCart()">Update Cart</button>
         </div>
       </div>
 
       <div class="coupon-cart-total">
-          <div class="coupon">
-            <input id="coupon-input" class="coupon-input" type="text" placeholder="Enter coupon code">
-            <button id="coupon-button">Apply Coupon</button>
-          </div>
+        <div class="coupon">
+          <input
+            id="coupon-input"
+            class="coupon-input"
+            type="text"
+            placeholder="Enter coupon code"
+          />
+          <button id="coupon-button">Apply Coupon</button>
+        </div>
 
-                
-                
-
-          <div class="cart-total">
-              <h3>Cart Total</h4>
-              <div class="cart-total-item"><h4>Subtotal</h4> <h4 id="total-subtotal"></h4></div>
-              <div class="cart-total-item"><h4>Shipping</h4> <h4>Free</h4></div>
-              <div class="cart-total-item"><h4>Total</h4> <h4 id="total-subtotal-discounted"></h4></div>
-              <button class="checkout-button">Proceed to Checkout</button>
+        <div class="cart-total">
+          <h3>Cart Total</h3>
+          <div class="cart-total-item">
+            <h4>Subtotal</h4>
+            <h4 id="total-subtotal"></h4>
           </div>
+          <div class="cart-total-item">
+            <h4>Shipping</h4>
+            <h4>Free</h4>
+          </div>
+          <div class="cart-total-item">
+            <h4>Total</h4>
+            <h4 id="total-subtotal-discounted"></h4>
+          </div>
+          <button class="checkout-button">Proceed to Checkout</button>
+        </div>
       </div>
     </section>
     <script src="app.js"></script>
