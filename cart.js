@@ -20,7 +20,6 @@ const cartQuantityCircle = document.getElementById("cart-quantity-identicator");
 
 const couponButton = document.getElementById("coupon-button");
 
-let cartItems = [];
 const totalCost = [];
 // const itemQuantity = document.getElementsByClassName("item-quantity");
 let itemQuantity = 1;
@@ -32,6 +31,7 @@ let coupons = ["NEWYEAR2024", "EIDMUBARAK", "BLACKFRIDAY"];
 // NEDEN GET ELEMENT BY CLASS NAME CALISIYOR , AMM GET ELEMENT BY ID CALISMIYOR ??
 
 let allProducts = [];
+let cartItems = [];
 
 async function getAllProducts() {
   try {
@@ -77,11 +77,14 @@ function checkOutCoupon(code) {
 }
 
 function getFromCart() {
-  cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
+  cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [
+    allProducts[6],
+    allProducts[7],
+    allProducts[8],
+    allProducts[9],
+    allProducts[10],
+  ];
   console.log(cartItems);
-  cartItems.push(allProducts[3]);
-  cartItems.push(allProducts[4]);
-  cartItems.push(allProducts[5]);
 
   // APP . js fileinda neler olacak ?
   //tum sayfalarda gecerli olan variable lar mi orada olacak import eedilmek icin ?
@@ -89,7 +92,6 @@ function getFromCart() {
   // INSPECTDEN APPLICATIONSDA LCOALSTORAGE IN ICINDE BIR ITEM VAR,
   // ONUN NEREDE EKLENDIGINI NASIL GORE BILIRIM >>>>
   // INdex sayfasinda eklemistim, fakat sildikten sonra yine geliyor getFromCart methodunu calistirdigimda
-  console.log(cartItems);
 
   for (let i = 0; i < cartItems.length; i++) {
     let htmlProduct = "";
@@ -197,8 +199,13 @@ function quantityMinus(price, index) {
     totalPrice.innerText = finalPrice + "$";
 
     totalCost[index] = parseFloat(finalPrice);
-  }
+  } else {
+    cartItems.splice(index, 1);
 
+    let newCartArr = JSON.stringify(cartItems);
+    localStorage.setItem("cartProducts", newCartArr);
+    updateCart();
+  }
   updateSubtotal();
 }
 
@@ -218,7 +225,12 @@ function updateSubtotal() {
 }
 
 function updateCart() {
-  productsContainer.innerHTML = "";
+  productsContainer.innerHTML = ` <div class="product-info">
+  <h4 id="title">Product</h4>
+  <h4>Price</h4>
+  <h4>Quantity</h4>
+  <h4>Subtotal</h4>
+</div>`;
   getFromCart();
   //  HTML ICINDEKI BU KISIM NEDEN SILINMIYOR ? Q44444
   //productsContainer.innerHTML = ""; silmesi gerekmiyor muy ?
