@@ -228,8 +228,8 @@ function updateSubtotal() {
 function updateCart() {
   productsContainer.innerHTML = "";
   getFromCart();
-
   //  HTML ICINDEKI BU KISIM NEDEN SILINMIYOR ? Q44444
+  //productsContainer.innerHTML = ""; silmesi gerekmiyor muy ?
 
   //<div class="product-info">
   //   <h4 id="title">Product</h4>
@@ -237,6 +237,12 @@ function updateCart() {
   //   <h4>Quantity</h4>
   //   <h4>Subtotal</h4>
   // </div>
+
+
+  // Q555 ]
+  // HER SAYFA REFRESHELNDIGINDE, VE UPDATE CART METHODU CAGIRILDIGINDA
+  // QUANTITYLERI KAYBEDIYORUM,
+  // LOCAL STORAGE E CART ITEM I EKLERKEN QUANTITY VARIABLE I EKLEMEM DOGRU OLUR MU?? 
 }
 
 function userSearchResults(input) {
@@ -267,4 +273,3 @@ function userSearchResults(input) {
   return htmlResult;
 }
 
-// Get i nerede kullanacagiz ? Her page refreshlendiginde nasil gelecek ?
