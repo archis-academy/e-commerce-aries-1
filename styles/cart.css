@@ -63,6 +63,8 @@
 }
 
 .coupon-input {
+  padding-left: 10px;
+  min-height: 50px;
   width: 200px;
 }
 
@@ -176,11 +178,7 @@
   padding-left: 20px;
 }
 
-
 /* TOP NAV BAR KISMINI DIREK EKLEDIM, COPY PASTE OLARAK, DOGRU MU ? */
-
-
-
 
 .cart-items-container {
   display: flex;
@@ -210,7 +208,7 @@
 
 .action-buttons {
   display: flex;
-  margin: 24px 40px;
+  margin: 24px 0px;
   margin-bottom: 80px;
   justify-content: space-between;
 }
@@ -272,6 +270,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  gap: 20px;
   padding: 24px 40px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
@@ -327,6 +326,38 @@
   margin: 0 auto;
 }
 
+.cart-action-button {
+  padding: 16px 48px;
+  background-color: #db4444;
+  color: white;
+  border-radius: 8px;
+}
+
+.simple-action-button {
+  padding: 16px 48px;
+  border: 2px solid #a2a2a2;
+  background-color: rgb(252, 253, 254);
+  border-radius: 4px;
+}
+
+@media (max-width: 870px) {
+  .coupon {
+    flex-direction: column;
+  }
+
+  .image-and-title {
+    flex: 2;
+  }
+
+  #title {
+    flex: 2;
+  }
+
+  .product-info {
+    gap: 10px;
+  }
+}
+
 @media (max-width: 720px) {
   .top-bar {
     flex-direction: column;
@@ -340,9 +371,6 @@
   }
   .cart-total {
     width: 60%;
-  }
-  .coupon {
-    flex-direction: column;
   }
 }
 
