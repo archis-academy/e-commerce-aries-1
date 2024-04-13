@@ -77,7 +77,7 @@ function checkOutCoupon(code) {
 function getFromCart() {
   cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
   console.log(cartItems);
-  cartItems.push(allProducts[3]);
+  // cartItems.push(allProducts[3]);
   // cartItems.push(allProducts[4]);
   // cartItems.push(allProducts[5]);
 
@@ -216,12 +216,12 @@ function updateSubtotal() {
     cost += totalCost[i];
     console.log(cost);
   }
-  cartSubtotal.innerText = cost + "$";
+  cartSubtotal.innerText = cost.toFixed(2) + "$";
 
   if (discounteState) {
     cartSubtotalDiscounted.innerText = (cost * 0.6).toFixed(2) + "$";
   } else {
-    cartSubtotalDiscounted.innerText = cost + "$";
+    cartSubtotalDiscounted.innerText = cost.toFixed(2) + "$";
   }
 }
 
@@ -238,11 +238,10 @@ function updateCart() {
   //   <h4>Subtotal</h4>
   // </div>
 
-
   // Q555 ]
   // HER SAYFA REFRESHELNDIGINDE, VE UPDATE CART METHODU CAGIRILDIGINDA
   // QUANTITYLERI KAYBEDIYORUM,
-  // LOCAL STORAGE E CART ITEM I EKLERKEN QUANTITY VARIABLE I EKLEMEM DOGRU OLUR MU?? 
+  // LOCAL STORAGE E CART ITEM I EKLERKEN QUANTITY VARIABLE I EKLEMEM DOGRU OLUR MU??
 }
 
 function userSearchResults(input) {
@@ -272,4 +271,3 @@ function userSearchResults(input) {
   }
   return htmlResult;
 }
-
