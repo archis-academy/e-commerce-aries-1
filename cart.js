@@ -16,6 +16,8 @@ const cartSubtotalDiscounted = document.getElementById(
   "total-subtotal-discounted"
 );
 
+const cartQuantityCircle = document.getElementById("cart-quantity-identicator");
+
 const couponButton = document.getElementById("coupon-button");
 
 let cartItems = [];
@@ -77,9 +79,9 @@ function checkOutCoupon(code) {
 function getFromCart() {
   cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
   console.log(cartItems);
-  // cartItems.push(allProducts[3]);
-  // cartItems.push(allProducts[4]);
-  // cartItems.push(allProducts[5]);
+  cartItems.push(allProducts[3]);
+  cartItems.push(allProducts[4]);
+  cartItems.push(allProducts[5]);
 
   // APP . js fileinda neler olacak ?
   //tum sayfalarda gecerli olan variable lar mi orada olacak import eedilmek icin ?
@@ -112,19 +114,9 @@ function getFromCart() {
                       </div>`;
     // ID YE INDEXI EKLEYEREK CALISTIRIYORUM BU DOGRU MU ?? Q2 Q2
     productsContainer.innerHTML += htmlProduct;
-    // BU METHODDA EKLEMEM GEREKTI ? DOGRU MU ?
-    // yazdigimiz html elemente ulasamadim id ile.
-
-    // bu neden calismadi ?
-    //for(product in cartItems){
-    // const htmlProduct = `<div class="product-info">
-    //                       <h4>${product.title}</h4>
-    //                       <h4>${product.price}</h4>
-    //                       <h4>1</h4>
-    //                       <h4>${product.price}</h4>
-    //                   </div>`;}
     totalCost[i] = cartItems[i].price;
   }
+  cartQuantityCircle.innerText = cartItems.length;
   updateSubtotal();
 }
 
