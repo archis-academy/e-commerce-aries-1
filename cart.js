@@ -85,26 +85,22 @@ function getFromCart() {
     }
   });
 
-  // { ...allProducts[6], quantity: 1 },
-  // { ...allProducts[7], quantity: 1 },
-  // { ...allProducts[8], quantity: 1 },
-  // { ...allProducts[9], quantity: 1 },
-  // { ...allProducts[10], quantity: 1 },
   // Q2 - my idea is to add a quantity property to each product item // .forEach((product)=>product.quantity=1) || [
   // and store it in cartItems array in this file.
   //
 
-  console.log(allProducts[3]), console.log(cartItems);
-
   // APP . js fileinda neler olacak ?
   //tum sayfalarda gecerli olan variable lar mi orada olacak import eedilmek icin ?
-
-  // INSPECTDEN APPLICATIONSDA LCOALSTORAGE IN ICINDE BIR ITEM VAR,
-  // ONUN NEREDE EKLENDIGINI NASIL GORE BILIRIM >>>>
-  // INdex sayfasinda eklemistim, fakat sildikten sonra yine geliyor getFromCart methodunu calistirdigimda
+  let htmlProduct = "";
+  if (cartItems.length == 0) {
+    htmlProduct = `<h4 class="empty-cart">Your cart is empty</h4>`;
+    productsContainer.innerHTML += htmlProduct;
+    cartQuantityCircle.innerText = 0;
+    return;
+  }
 
   for (let i = 0; i < cartItems.length; i++) {
-    let htmlProduct = "";
+    htmlProduct = "";
     htmlProduct += `<div class="product-info">
                           <div class="image-and-title">
                           <img class="item-image" src="${cartItems[i].image}">

@@ -188,6 +188,10 @@
   margin-bottom: 40px;
 }
 
+.empty-cart {
+  margin: 0 auto;
+}
+
 .cart-icon-container {
   position: relative;
 }
