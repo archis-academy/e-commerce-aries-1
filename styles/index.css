@@ -31,6 +31,7 @@
   padding: 24px 36px;
   border: 1px rgb(153, 153, 153) solid;
   justify-content: center;
+  transition: 0.3s;
 }
 
 .filter-color-white {
