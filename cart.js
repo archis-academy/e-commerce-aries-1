@@ -20,7 +20,6 @@ const cartQuantityCircle = document.getElementById("cart-quantity-identicator");
 
 const couponButton = document.getElementById("coupon-button");
 
-const totalCost = [];
 // const itemQuantity = document.getElementsByClassName("item-quantity");
 let itemQuantity = 1;
 let totalPrice = "";
@@ -77,14 +76,25 @@ function checkOutCoupon(code) {
 }
 
 function getFromCart() {
-  cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [
-    allProducts[6],
-    allProducts[7],
-    allProducts[8],
-    allProducts[9],
-    allProducts[10],
-  ];
+  cartItems = JSON.parse(localStorage.getItem("cartProducts")) || null;
   console.log(cartItems);
+  cartItems.forEach((product) => {
+    if ("quantity" in product) {
+    } else {
+      product.quantity = 1;
+    }
+  });
+
+  // { ...allProducts[6], quantity: 1 },
+  // { ...allProducts[7], quantity: 1 },
+  // { ...allProducts[8], quantity: 1 },
+  // { ...allProducts[9], quantity: 1 },
+  // { ...allProducts[10], quantity: 1 },
+  // Q2 - my idea is to add a quantity property to each product item // .forEach((product)=>product.quantity=1) || [
+  // and store it in cartItems array in this file.
+  //
+
+  console.log(allProducts[3]), console.log(cartItems);
 
   // APP . js fileinda neler olacak ?
   //tum sayfalarda gecerli olan variable lar mi orada olacak import eedilmek icin ?
@@ -103,20 +113,27 @@ function getFromCart() {
                           <h4>${cartItems[i].price}$</h4>
                           <div class="quantity-button">
                             <div class="quantity-button-contents">
-                            <h4 id="item-quantity-${i}">1</h4>
+                            <h4 id="item-quantity-${i}">${
+      cartItems[i].quantity
+    }</h4>
                             <div class="button-div">
-                              <button onClick="quantityPlus(${cartItems[i].price}, ${i}
+                              <button onClick="quantityPlus(${
+                                cartItems[i].price
+                              }, ${i}
                               )" class="button-up" id="button-up"></button>
-                              <button onClick="quantityMinus(${cartItems[i].price}, ${i}
+                              <button onClick="quantityMinus(${
+                                cartItems[i].price
+                              }, ${i}
                               )" class="button-down" id="button-down"></button>
                             </div>
                             </div>
                           </div>
-                          <h4 id="subtotal-price-${i}">${cartItems[i].price}$</h4>
+                          <h4 id="subtotal-price-${i}">${(
+      cartItems[i].price * cartItems[i].quantity
+    ).toFixed(2)}$</h4>
                       </div>`;
     // ID YE INDEXI EKLEYEREK CALISTIRIYORUM BU DOGRU MU ?? Q2 Q2
     productsContainer.innerHTML += htmlProduct;
-    totalCost[i] = cartItems[i].price;
   }
   cartQuantityCircle.innerText = cartItems.length;
   updateSubtotal();
@@ -173,15 +190,15 @@ function quantityPlus(price, index) {
   itemQuantity = document.getElementById(`item-quantity-${index}`);
   totalPrice = document.getElementById(`subtotal-price-${index}`);
   console.log(`subtotal-price-${index}`);
-  let quantity = parseInt(itemQuantity.innerText, 10);
+  let quantity = parseInt(cartItems[index].quantity, 10);
   quantity++;
+  cartItems[index].quantity = quantity;
   itemQuantity.innerText = quantity;
   let finalPrice = (price * quantity).toFixed(2);
   totalPrice.innerText = finalPrice + "$";
 
-  totalCost[index] = parseFloat(finalPrice);
   // neden parse int yapmam gerekiyor ?? Q333
-
+  localStorage.setItem("cartProducts", JSON.stringify(cartItems));
   console.log(finalPrice);
   updateSubtotal();
 }
@@ -198,7 +215,8 @@ function quantityMinus(price, index) {
     let finalPrice = (price * quantity).toFixed(2);
     totalPrice.innerText = finalPrice + "$";
 
-    totalCost[index] = parseFloat(finalPrice);
+    cartItems[index].quantity = quantity;
+    localStorage.setItem("cartProducts", JSON.stringify(cartItems));
   } else {
     cartItems.splice(index, 1);
 
@@ -212,8 +230,7 @@ function quantityMinus(price, index) {
 function updateSubtotal() {
   let cost = 0;
   for (let i = 0; i < cartItems.length; i++) {
-    cost += totalCost[i];
-    console.log(cost);
+    cost += cartItems[i].quantity * cartItems[i].price;
   }
   cartSubtotal.innerText = cost.toFixed(2) + "$";
 
@@ -232,15 +249,8 @@ function updateCart() {
   <h4>Subtotal</h4>
 </div>`;
   getFromCart();
-  //  HTML ICINDEKI BU KISIM NEDEN SILINMIYOR ? Q44444
-  //productsContainer.innerHTML = ""; silmesi gerekmiyor muy ?
 
-  //<div class="product-info">
-  //   <h4 id="title">Product</h4>
-  //   <h4>Price</h4>
-  //   <h4>Quantity</h4>
-  //   <h4>Subtotal</h4>
-  // </div>
+  // Bu methodda local storage e bir update var mi diye bakmam gerekiyor, nasil yapa bilirim ?
 
   // Q555 ]
   // HER SAYFA REFRESHELNDIGINDE, VE UPDATE CART METHODU CAGIRILDIGINDA
