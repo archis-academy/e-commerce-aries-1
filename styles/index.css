@@ -8,6 +8,7 @@ body {
   min-height: auto;
   overflow-x: hidden;
 }
+/* SALIH HOMEPAGE EXPLORE PRODUCTS START */
 .our-container {
   margin: 0 auto;
   max-width: 1300px;
@@ -191,3 +192,4 @@ body {
     margin-left: 0;
   }
 }
+/* SALIH HOMEPAGE EXPLORE PRODUCTS END */
