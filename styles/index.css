@@ -386,10 +386,12 @@
   margin: 0 auto;
   margin-top: 50px;
   background-color: black;
+  background-clip: content-box;
   max-width: 1300px;
   color: white;
   display: flex;
   align-items: center;
+  padding: 0 20px;
 }
 
 .special-item-vertical {
@@ -435,6 +437,7 @@
   object-fit: contain;
   max-height: 300px;
   min-height: 250px;
+  padding-right: 20px;
 }
 
 .special-image-container {
@@ -453,6 +456,14 @@
 @media (max-width: 1350px) {
   .special-timer {
     flex-direction: column;
+  }
+}
+@media (max-width: 700px) {
+  .special-img {
+    max-width: 80%;
+  }
+  .special-content {
+    font-size: 24px;
   }
 }
 /* Oruj - Special product*/
