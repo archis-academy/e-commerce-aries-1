@@ -46,13 +46,10 @@ async function getAllProducts() {
   } catch (error) {
     console.error(error);
   }
-  console.log(allProducts);
   loadContainer();
   specialContentUpdater();
   timer24(86399);
 }
-
-
 
 hamburgerBar.addEventListener("click", () => {
   hamburgerBarContents.classList.add("hamburger-bar-toggled");
@@ -119,20 +116,16 @@ function userSearchResults(input) {
   allProducts.forEach((element) => {
     if (element.title.toLowerCase().includes(input.toLowerCase())) {
       results.push(element.title);
-      console.log(input + "a");
-      console.log(element.title);
     }
   });
   let htmlResult = "";
 
-  console.log(results.length);
   let length = 0;
   if (results.length > 10) {
     length = 10;
   } else {
     length = results.length;
   }
-  console.log(length);
   for (let i = 0; i < length; i++) {
     htmlResult += `<h5 class="text-results" >${results[i]}</h5> \n`;
   }
@@ -152,7 +145,6 @@ function loadContainer() {
   catContainer.innerHTML += categoriesHtml;
 }
 
-
 function changeSVGcolorWhite(i) {
   let element = document.getElementById(i);
   element.classList.add("filter-color-white");
@@ -163,12 +155,10 @@ function changeSVGcolorBlack(i) {
   let element = document.getElementById(i);
   element.classList.add("filter-color-black");
   element.classList.remove("filter-color-white");
-  
 }
 
 function specialContentUpdater() {
   randomElement = allProducts[Math.floor(Math.random() * allProducts.length)];
-  console.log(randomElement.category);
   specialImage.setAttribute("src", `${randomElement.image}`);
   //   specialContent.innerText = randomElement.title;
 }
@@ -184,7 +174,6 @@ function timer24(timer) {
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
     timer = timer - 1;
-    console.log(timer + "  " + hours + ":" + minutes + ":" + seconds);
     hoursE.innerHTML = hours + "<br>hours";
     minutesE.innerHTML = minutes + "<br>minutes";
     secondsE.innerHTML = seconds + "<br>seconds";
@@ -194,9 +183,6 @@ function timer24(timer) {
 }
 
 addToCartButton.onclick = function () {
-  console.log(randomElement.title + "oruj");
-  console.log(randomElement.id + "oruj");
-
   addToCart(randomElement.id);
   location.href = "cart.html";
 };
