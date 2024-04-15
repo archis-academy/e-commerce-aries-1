@@ -1,5 +1,4 @@
-/* Orujhimaru - Homepage-Header */
-
+/* Oruj - Homepage-Header */
 .homepage-header-container {
   background-color: black;
   color: white;
@@ -10,8 +9,6 @@
 .banner-text {
   display: flex;
   margin-left: 10%;
-  /* HOW TO FIX THIS PROBLEM. I WANT THE BANNER TEXT TO BE IN THE CENTER OF THE SCREEN
-  AND I WANT THE LANGUAGE BUTTON TO BE ON FAR RIGHT WITH A RIGHT MARGIN. */
   gap: 20px;
 }
 .banner-text h3 {
@@ -75,7 +72,6 @@
 
 .search-bar-results {
   display: none;
-  /* IS THIS CORRECT */
   background-color: rgb(218, 218, 218);
   color: black;
   font-size: 16px;
@@ -96,7 +92,7 @@
   padding: 10px;
   min-height: 40px;
   overflow: hidden;
-  white-space: nowrap; /* Don't forget this one */
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
@@ -242,7 +238,6 @@
 }
 
 @media (max-width: 700px) {
-  /* Make things vertical */
   .hero-categories {
     border-right: 0px;
     padding: 10px 0px;
@@ -263,7 +258,6 @@
   .right-side {
     justify-content: center;
     align-self: center;
-    /* width: 100%; remove from cart page*/
   }
   .hero-carousell {
     margin-left: 0;
@@ -303,3 +297,4 @@
     display: inline;
   }
 }
+/* Oruj- Homepage Header */

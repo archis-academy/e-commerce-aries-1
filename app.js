@@ -54,9 +54,6 @@ function imageChanger(i, elementId) {
 
 button.addEventListener("click", () => {
   closeLangButton();
-  //
-  //  1. HOW TO CLOSE THIS WHEN ANYWHERE ELSE IS CLICKED ??
-  //
 });
 
 function closeLangButton() {
@@ -71,8 +68,6 @@ function changeLang(languageId) {
     `<i id="dropdown-icon" class="fa-solid fa-caret-down"></i>`;
   language.innerText = changingLang;
   event.preventDefault();
-  // IS this correct ?
-  //
   closeLangButton();
 }
 
