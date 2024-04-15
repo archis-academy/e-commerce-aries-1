@@ -21,23 +21,10 @@ let totalPrice = "";
 
 let coupons = ["NEWYEAR2024", "EIDMUBARAK", "BLACKFRIDAY"];
 
-let allProducts = [];
 let cartItems = null;
 let discountState = false;
 
-async function getAllProducts() {
-  try {
-    const res = await fetch("https://fakestoreapi.com/products");
-    const products = await res.json();
-    allProducts = products;
-  } catch (error) {
-    console.error(error);
-  }
-  console.log(allProducts);
-  getFromCart();
-}
-
-getAllProducts();
+getFromCart();
 
 function getFromCart() {
   cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
