@@ -21,26 +21,24 @@ async function getAllProducts() {
     console.error(error);
   }
   console.log(allProducts);
-  getFromCart();
+  getFromWishlist();
 
   // bu method bir kere mi calistirilacak ? app.js te mi ?
 }
 
 getAllProducts();
 
-function getFromCart() {
-  wishlistItems =
-    JSON.parse(localStorage.getItem("wishlistProducts")) ||
-    [
-      // allProducts[0],
-      // allProducts[1],
-      // allProducts[2],
-      // allProducts[3],
-      // allProducts[4],
-      // allProducts[5],
-      // allProducts[6],
-      // allProducts[7],
-    ];
+function getFromWishlist() {
+  wishlistItems = JSON.parse(localStorage.getItem("wishlistProducts")) || [
+    allProducts[0],
+    allProducts[1],
+    allProducts[2],
+    allProducts[3],
+    allProducts[4],
+    allProducts[5],
+    allProducts[6],
+    allProducts[7],
+  ];
   console.log(wishlistItems);
 
   // wishlistItems.forEach((product) => {
@@ -52,7 +50,7 @@ function getFromCart() {
 
   let htmlProduct = "";
   if (wishlistItems.length == 0) {
-    htmlProduct = `<h4 class="empty-cart">nO WISHED Items</h4>`;
+    htmlProduct = `<h4 class="empty-cart">No items in wishlist.</h4>`;
     productsContainer.innerHTML += htmlProduct;
     // cartQuantityCircle.innerText = 0;
     // update heart icon
@@ -62,10 +60,13 @@ function getFromCart() {
   for (let i = 0; i < wishlistItems.length; i++) {
     htmlProduct = "";
     htmlProduct += `    <div class="wishlist-item">
+                          <span id="" style="color: black;">
+                          <i onclick="deleteWishlistProduct(${wishlistItems[i].id})" id="delete-icon" class="fa-regular fa-lg fa-trash-can"></i>
+                          </span>
                           <div class="wishlist-image-container">
                                 <img class="wishlist-image" src="${wishlistItems[i].image}">
                           </div>
-                          <button class="cart-add-button">Add to Cart</button>
+                          <button class="cart-add-button" onclick="addToCart(${wishlistItems[i].id})">Add to Cart</button>
                           <h4 class="wishlist-h4-title">${wishlistItems[i].title}</h4>
                           <h4 class="red-text">$ ${wishlistItems[i].price}</h4>
                         </div>
@@ -95,6 +96,14 @@ function closeLangButton() {
   dropdown.classList.toggle("toggle-div");
 }
 
+userInputField.addEventListener("focus", () => {
+  searchIcon.classList.add("search-icon-invisible");
+});
+
+userInputField.addEventListener("blur", () => {
+  searchIcon.classList.remove("search-icon-invisible");
+});
+
 function changeLang(languageId) {
   const language = document.getElementById(languageId);
   changingLang = button.innerText;
@@ -106,6 +115,35 @@ function changeLang(languageId) {
   // IS this correct ?
   //
   closeLangButton();
+}
+
+function addToCart(productId) {
+  const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
+
+  const isAdded = cartItems.some((product) => product.id === productId);
+  const addButton = document.querySelector(`#addToCart_${productId}`);
+
+  if (!isAdded) {
+    const productToAdd = allProducts.find(
+      (product) => product.id === productId
+    );
+
+    const productToAddNew = { ...productToAdd, quantity: 1 };
+
+    localStorage.setItem(
+      "cartProducts",
+      JSON.stringify([...cartItems, productToAddNew])
+    );
+  }
+  console.log(cartItems);
+}
+
+function deleteWishlistProduct(productId) {
+  const filteredItems = JSON.parse(
+    localStorage.getItem("wishlistProducts")
+  ).filter((product) => product.id !== productId);
+
+  localStorage.setItem("cartProducts", JSON.stringify(filteredItems));
 }
 
 function updateHeartIcon() {}
