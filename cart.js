@@ -1,11 +1,6 @@
 const button = document.getElementById("btn-lang");
 const dropdown = document.getElementById("hl-dropdown-content");
 
-const searchBarRes = document.getElementById("search-bar-results");
-const userInputField = document.getElementById("user-input");
-
-const searchIcon = document.getElementById("search-icon");
-
 const hamburgerBar = document.getElementById("hamburger-bar");
 const hamburgerBarContents = document.getElementById("hamburger-bar-opened");
 const hamburgerBarCloser = document.getElementById("hamburger-bar-closer");
@@ -122,21 +117,6 @@ function changeLang(languageId) {
   event.preventDefault();
   closeLangButton();
 }
-
-userInputField.addEventListener("focus", () => {
-  searchBarRes.classList.add("search-bar-visible");
-  searchIcon.classList.add("search-icon-invisible");
-});
-
-userInputField.addEventListener("blur", () => {
-  searchBarRes.classList.remove("search-bar-visible");
-  searchIcon.classList.remove("search-icon-invisible");
-});
-
-userInputField.addEventListener("keyup", () => {
-  let a = document.getElementById("user-input").value;
-  searchBarRes.innerHTML = userSearchResults(a);
-});
 
 function quantityPlus(price, index) {
   itemQuantity = document.getElementById(`item-quantity-${index}`);
