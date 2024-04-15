@@ -94,7 +94,7 @@
   padding: 10px;
   min-height: 40px;
   overflow: hidden;
-  white-space: nowrap; /* Don't forget this one */
+  white-space: nowrap; 
   text-overflow: ellipsis;
 }
 
@@ -172,7 +172,6 @@
   padding-left: 20px;
 }
 
-/* TOP NAV BAR KISMINI DIREK EKLEDIM, COPY PASTE OLARAK, DOGRU MU ? */
 
 .cart-items-container {
   display: flex;
@@ -298,11 +297,9 @@
 
 .product-info * {
   flex: 1;
-  /* max-width: 28ch; */
 }
 
 .item-title-h4 {
-  /* FIND A BETTER SOLUTION FOR LINE WIDTH ! */
   max-height: 5ch;
   text-overflow: ellipsis;
   overflow: hidden;
