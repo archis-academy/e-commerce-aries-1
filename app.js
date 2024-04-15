@@ -71,9 +71,11 @@ function addToCart(productId) {
       (product) => product.id === productId
     );
 
+    const productToAddNew = { ...productToAdd, quantity: 1 };
+
     localStorage.setItem(
       "cartProducts",
-      JSON.stringify([...cartItems, productToAdd])
+      JSON.stringify([...cartItems, productToAddNew])
     );
     addButton.textContent = "Remove From Cart";
   } else {
