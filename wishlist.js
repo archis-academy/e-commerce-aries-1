@@ -30,15 +30,13 @@ getAllProducts();
 
 function getFromWishlist() {
   wishlistItems = JSON.parse(localStorage.getItem("wishlistProducts")) || [
-    allProducts[0],
     allProducts[1],
     allProducts[2],
     allProducts[3],
     allProducts[4],
     allProducts[5],
-    allProducts[6],
-    allProducts[7],
   ];
+  localStorage.setItem("wishlistProducts", JSON.stringify(wishlistItems));
   console.log(wishlistItems);
 
   // wishlistItems.forEach((product) => {
@@ -143,7 +141,9 @@ function deleteWishlistProduct(productId) {
     localStorage.getItem("wishlistProducts")
   ).filter((product) => product.id !== productId);
 
-  localStorage.setItem("cartProducts", JSON.stringify(filteredItems));
+  localStorage.setItem("wishlistProducts", JSON.stringify(filteredItems));
+  productsContainer.innerHTML = "";
+  getFromWishlist();
 }
 
 function updateHeartIcon() {}
