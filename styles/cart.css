@@ -1,3 +1,5 @@
+/* ORUJ - E-11 CART PAGE START */
+
 .homepage-header-container {
   background-color: black;
   color: white;
@@ -8,8 +10,6 @@
 .banner-text {
   display: flex;
   margin-left: 10%;
-  /* HOW TO FIX THIS PROBLEM. I WANT THE BANNER TEXT TO BE IN THE CENTER OF THE SCREEN
-    AND I WANT THE LANGUAGE BUTTON TO BE ON FAR RIGHT WITH A RIGHT MARGIN. */
   gap: 20px;
 }
 .banner-text h3 {
@@ -425,3 +425,4 @@
     display: inline;
   }
 }
+/* ORUJ - E-11 CART PAGE END */
