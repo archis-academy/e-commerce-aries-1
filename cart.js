@@ -19,11 +19,12 @@ const cartSubtotalDiscounted = document.getElementById(
 const cartQuantityCircle = document.getElementById("cart-quantity-identicator");
 
 const couponButton = document.getElementById("coupon-button");
+const discountMes = document.getElementById("discount-message");
 
 // const itemQuantity = document.getElementsByClassName("item-quantity");
 let itemQuantity = 1;
 let totalPrice = "";
-let discounteState = false;
+let discountState = Boolean(localStorage.getItem("discountState")) || false;
 
 let coupons = ["NEWYEAR2024", "EIDMUBARAK", "BLACKFRIDAY"];
 
@@ -53,25 +54,39 @@ couponButton.addEventListener("click", () => {
   checkOutCoupon(couponCode);
 });
 
-function checkOutCoupon(code) {
-  if (discounteState) {
-    return;
-    //function u durdurma boyle mi ? Q4
-  }
+function checkOutCoupon(code = "a") {
+  localStorage.setItem("discountState", discountState);
+  // console.log(Boolean(localStorage.getItem("discountState")) + "with parse");
+  // console.log(localStorage.getItem("discountState") + "without parse");
 
-  for (coupon in coupons) {
-    if (coupons[coupon].toLowerCase() === code.toLowerCase()) {
-      discounteState = true;
+  if (localStorage.getItem("discountState") === "true") {
+    discountMes.style.display = "block";
+    //function u durdurma boyle mi ? Q4
+  } else {
+    for (coupon in coupons) {
+      if (coupons[coupon].toLowerCase() === code.toLowerCase()) {
+        discountState = true;
+        localStorage.setItem("discountState", discountState);
+        discountMes.style.display = "block";
+        discountMes.innerText += ` Used code: ${code}`;
+      }
     }
   }
+  updateSubtotal();
+}
 
-  if (discounteState) {
-    cartSubtotalDiscounted.innerText =
-      (
-        parseFloat(cartSubtotalDiscounted.innerText.replace("$", "")) * 0.6
-      ).toFixed(2) + "$";
+function updateSubtotal() {
+  let cost = 0;
+  for (let i = 0; i < cartItems.length; i++) {
+    cost += cartItems[i].quantity * cartItems[i].price;
+  }
+  cartSubtotal.innerText = cost.toFixed(2) + "$";
+  console.log(localStorage.getItem("discountState"));
+
+  if (localStorage.getItem("discountState") === "true") {
+    cartSubtotalDiscounted.innerText = (cost * 0.6).toFixed(2) + "$";
   } else {
-    // ADD TEXT TO STATE ITS INVALID.
+    cartSubtotalDiscounted.innerText = cost.toFixed(2) + "$";
   }
 }
 
@@ -132,7 +147,7 @@ function getFromCart() {
     productsContainer.innerHTML += htmlProduct;
   }
   cartQuantityCircle.innerText = cartItems.length;
-  updateSubtotal();
+  checkOutCoupon();
 }
 
 hamburgerBar.addEventListener("click", () => {
@@ -221,20 +236,6 @@ function quantityMinus(price, index) {
     updateCart();
   }
   updateSubtotal();
-}
-
-function updateSubtotal() {
-  let cost = 0;
-  for (let i = 0; i < cartItems.length; i++) {
-    cost += cartItems[i].quantity * cartItems[i].price;
-  }
-  cartSubtotal.innerText = cost.toFixed(2) + "$";
-
-  if (discounteState) {
-    cartSubtotalDiscounted.innerText = (cost * 0.6).toFixed(2) + "$";
-  } else {
-    cartSubtotalDiscounted.innerText = cost.toFixed(2) + "$";
-  }
 }
 
 function updateCart() {
