@@ -299,13 +299,13 @@
 .product-info * {
   flex: 1;
   /* max-width: 28ch; */
-  height: fit-content;
-  overflow: hidden;
 }
 
 .item-title-h4 {
   /* FIND A BETTER SOLUTION FOR LINE WIDTH ! */
-  line-height: 2ch;
+  max-height: 5ch;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .coupon-cart-total {
