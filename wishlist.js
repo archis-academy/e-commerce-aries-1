@@ -35,6 +35,11 @@ function getFromWishlist() {
     allProducts[3],
     allProducts[4],
     allProducts[5],
+    allProducts[6],
+    allProducts[7],
+    allProducts[8],
+    allProducts[9],
+    allProducts[10],
   ];
   localStorage.setItem("wishlistProducts", JSON.stringify(wishlistItems));
   console.log(wishlistItems);
