@@ -13,6 +13,10 @@ const cartSubtotalDiscounted = document.getElementById(
 
 const cartQuantityCircle = document.getElementById("cart-quantity-identicator");
 
+const wishlistQuantity = document.getElementById(
+  "wishlist-quantity-identicator"
+);
+
 const couponButton = document.getElementById("coupon-button");
 const discountMes = document.getElementById("discount-message");
 
@@ -42,6 +46,10 @@ function getFromCart() {
     cartQuantityCircle.innerText = 0;
     return;
   }
+
+  wishlistItems = JSON.parse(localStorage.getItem("wishlistProducts")) || [];
+  localStorage.setItem("wishlistProducts", JSON.stringify(wishlistItems));
+  wishlistQuantity.innerText = wishlistItems.length;
 
   for (let i = 0; i < cartItems.length; i++) {
     htmlProduct = "";
