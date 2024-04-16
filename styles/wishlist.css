@@ -307,7 +307,7 @@
 
 @media (max-width: 600px) {
   .user-input {
-    width: auto;
+    width: 100%;
   }
   .search-bar {
     width: 100%;
