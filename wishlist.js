@@ -16,7 +16,8 @@ const wishlistQuantity = document.getElementById(
   "wishlist-quantity-identicator"
 );
 const cartQuantity = document.getElementById("cart-quantity-identicator");
-let wishlistItems = "";
+
+let wishlistItems = [];
 let cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
 
 async function getAllProducts() {
@@ -34,20 +35,7 @@ async function getAllProducts() {
 getAllProducts();
 
 function getFromWishlist() {
-  wishlistItems =
-    JSON.parse(localStorage.getItem("wishlistProducts")) ||
-    [
-      // allProducts[1],
-      // allProducts[2],
-      // allProducts[3],
-      // allProducts[4],
-      // allProducts[5],
-      // allProducts[6],
-      // allProducts[7],
-      // allProducts[8],
-      // allProducts[9],
-      // allProducts[10],
-    ];
+  wishlistItems = JSON.parse(localStorage.getItem("wishlistProducts")) || [];
   localStorage.setItem("wishlistProducts", JSON.stringify(wishlistItems));
   console.log(wishlistItems);
   wishlistQuantity.innerText = wishlistItems.length;
@@ -125,14 +113,11 @@ function changeLang(languageId) {
     `<i id="dropdown-icon" class="fa-solid fa-caret-down"></i>`;
   language.innerText = changingLang;
   event.preventDefault();
-  // IS this correct ?
-  //
   closeLangButton();
 }
 
 function addToCart(productId) {
   const isAdded = cartItems.some((product) => product.id === productId);
-  const addButton = document.querySelector(`#addToCart_${productId}`);
 
   if (!isAdded) {
     const productToAdd = allProducts.find(
@@ -146,8 +131,8 @@ function addToCart(productId) {
       JSON.stringify([...cartItems, productToAddNew])
     );
   }
+  cartItems = JSON.parse(localStorage.getItem("cartProducts"));
   cartQuantity.innerText = cartItems.length;
-  console.log(cartItems);
 }
 
 function deleteWishlistProduct(productId) {
