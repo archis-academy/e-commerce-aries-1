@@ -12,6 +12,13 @@ const hamburgerBarCloser = document.getElementById("hamburger-bar-closer");
 
 const productsContainer = document.getElementById("wishlist-items-container");
 
+const wishlistQuantity = document.getElementById(
+  "wishlist-quantity-identicator"
+);
+const cartQuantity = document.getElementById("cart-quantity-identicator");
+let wishlistItems = "";
+let cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
+
 async function getAllProducts() {
   try {
     const res = await fetch("https://fakestoreapi.com/products");
@@ -22,27 +29,29 @@ async function getAllProducts() {
   }
   console.log(allProducts);
   getFromWishlist();
-
-  // bu method bir kere mi calistirilacak ? app.js te mi ?
 }
 
 getAllProducts();
 
 function getFromWishlist() {
-  wishlistItems = JSON.parse(localStorage.getItem("wishlistProducts")) || [
-    allProducts[1],
-    allProducts[2],
-    allProducts[3],
-    allProducts[4],
-    allProducts[5],
-    allProducts[6],
-    allProducts[7],
-    allProducts[8],
-    allProducts[9],
-    allProducts[10],
-  ];
+  wishlistItems =
+    JSON.parse(localStorage.getItem("wishlistProducts")) ||
+    [
+      // allProducts[1],
+      // allProducts[2],
+      // allProducts[3],
+      // allProducts[4],
+      // allProducts[5],
+      // allProducts[6],
+      // allProducts[7],
+      // allProducts[8],
+      // allProducts[9],
+      // allProducts[10],
+    ];
   localStorage.setItem("wishlistProducts", JSON.stringify(wishlistItems));
   console.log(wishlistItems);
+  wishlistQuantity.innerText = wishlistItems.length;
+  cartQuantity.innerText = cartItems.length;
 
   // wishlistItems.forEach((product) => {
   //   if ("quantity" in product) {
@@ -76,6 +85,7 @@ function getFromWishlist() {
                       </div>`;
     productsContainer.innerHTML += htmlProduct;
   }
+
   // cartQuantityCircle.innerText = cartItems.length;
   // heart icon updater
 }
@@ -121,8 +131,6 @@ function changeLang(languageId) {
 }
 
 function addToCart(productId) {
-  const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
-
   const isAdded = cartItems.some((product) => product.id === productId);
   const addButton = document.querySelector(`#addToCart_${productId}`);
 
@@ -138,6 +146,7 @@ function addToCart(productId) {
       JSON.stringify([...cartItems, productToAddNew])
     );
   }
+  cartQuantity.innerText = cartItems.length;
   console.log(cartItems);
 }
 
@@ -148,7 +157,6 @@ function deleteWishlistProduct(productId) {
 
   localStorage.setItem("wishlistProducts", JSON.stringify(filteredItems));
   productsContainer.innerHTML = "";
+  wishlistQuantity.innerText = wishlistItems.length;
   getFromWishlist();
 }
-
-function updateHeartIcon() {}
