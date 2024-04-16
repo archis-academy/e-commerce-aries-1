@@ -1,0 +1,76 @@
+/* Oruj Homepage new arrivals start */
+.header-h3-style {
+  font-size: 36px;
+}
+
+.homepage-new-arrivals {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.main-grid-container {
+  color: white;
+  display: grid;
+  grid-template-areas:
+    " a a d d "
+    " a a c b";
+  column-gap: 30px;
+  row-gap: 32px;
+  margin-top: 60px;
+}
+
+.maing-grid-container img {
+  object-fit: cover;
+}
+
+.main-grid-container > div {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  min-height: 270px;
+  padding: 8px 24px;
+}
+
+.main-grid-container > div h4 {
+  font-size: 24px;
+  font-weight: 600px;
+}
+.main-grid-container > div :last-child {
+  text-decoration: underline;
+  font-size: 16px;
+  padding-bottom: 32px;
+}
+
+.ps5 {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  background-image: url("/images/playstation5.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  grid-area: a;
+}
+
+.gucci {
+  background-image: url("/images/gucci-perfume.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: b;
+}
+
+.speakers {
+  background-image: url("/images/speakers.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: c;
+}
+
+.women-hat {
+  background-image: url("/images/woman-with-hat.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  grid-area: d;
+}
+
+/* Oruj Homepage new arrivals End */
