@@ -77,7 +77,7 @@ function getFromWishlist() {
                                 <img class="wishlist-image" src="${wishlistItems[i].image}">
                           </div>
                           <button class="cart-add-button" onclick="addToCart(${wishlistItems[i].id})">
-                          <i class="fa-regular fa-cart-shopping"></i>
+                          <i class="fa-solid fa-cart-shopping"></i>
                            Add to Cart</button>
                           <h4 class="wishlist-h4-title">${wishlistItems[i].title}</h4>
                           <h4 class="red-text">$ ${wishlistItems[i].price}</h4>
