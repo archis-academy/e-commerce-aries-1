@@ -36,15 +36,17 @@ async function getAllProducts() {
 getAllProducts();
 
 function getFromWishlist() {
-  wishlistItems = JSON.parse(localStorage.getItem("wishlistProducts")) || [
-    allProducts[5],
-    allProducts[6],
-    allProducts[7],
-    allProducts[8],
-    allProducts[9],
-    allProducts[10],
-    allProducts[11],
-  ];
+  wishlistItems =
+    JSON.parse(localStorage.getItem("wishlistProducts")) ||
+    [
+      // allProducts[5],
+      // allProducts[6],
+      // allProducts[7],
+      // allProducts[8],
+      // allProducts[9],
+      // allProducts[10],
+      // allProducts[11],
+    ];
   localStorage.setItem("wishlistProducts", JSON.stringify(wishlistItems));
   console.log(wishlistItems);
   wishlistQuantity.innerText = wishlistItems.length;
