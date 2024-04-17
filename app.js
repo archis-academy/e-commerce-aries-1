@@ -188,26 +188,25 @@ addToCartButton.onclick = function () {
   location.href = "cart.html";
 };
 
-// Method from Salih
-function addToCart(productId) {
-  const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
+// // Method from Salih
+// function addToCart(productId) {
+//   const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
 
-  const isAdded = cartItems.some((product) => product.id === productId);
+//   const isAdded = cartItems.some((product) => product.id === productId);
 
-  if (!isAdded) {
-    const productToAdd = allProducts.find(
-      (product) => product.id === productId
-    );
+//   if (!isAdded) {
+//     const productToAdd = allProducts.find(
+//       (product) => product.id === productId
+//     );
 
-    localStorage.setItem(
-      "cartProducts",
-      JSON.stringify([...cartItems, productToAdd])
-    );
-  } else {
-    // deleteCartProduct(productId);
-  }
-}
-
+//     localStorage.setItem(
+//       "cartProducts",
+//       JSON.stringify([...cartItems, productToAdd])
+//     );
+//   } else {
+//     // deleteCartProduct(productId);
+//   }
+// }
 
 /* SALIH HOMEPAGE EXPLORE PRODUCTS */
 
