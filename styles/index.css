@@ -351,14 +351,14 @@
   color: white;
 }
 
-.categories-header {
+/* .categories-header {
   display: flex;
   gap: 16px;
   align-items: center;
   color: #db4444;
   font-size: 16px;
   margin-bottom: 30px;
-}
+} */
 
 .red-box {
   width: 20px;
@@ -467,3 +467,315 @@
   }
 }
 /* Oruj - Special product*/
+
+/* Oruj Homepage new arrivals start */
+.categories-header-2 {
+  display: flex;
+  max-width: 1300px;
+  align-items: center;
+  color: #db4444;
+}
+
+.categories-header-2 * {
+  padding-left: 30px;
+}
+
+.header-h3-style {
+  font-size: 36px;
+}
+
+.homepage-new-arrivals {
+  max-width: 1300px;
+  padding: 20px 20px;
+  margin: 0 auto;
+}
+
+.main-grid-container {
+  color: white;
+  display: grid;
+  grid-template-areas:
+    " a a d d "
+    " a a c b";
+  column-gap: 30px;
+  row-gap: 32px;
+  margin: 0 30px;
+  margin-top: 60px;
+}
+
+.maing-grid-container img {
+  object-fit: cover;
+}
+
+.main-grid-container > div {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  min-height: 250px;
+  border-radius: 4px;
+  padding: 16px 24px 0px 24px;
+}
+
+.main-grid-container > div h4 {
+  font-size: 24px;
+  font-weight: 600px;
+}
+.main-grid-container > div :last-child {
+  text-decoration: underline;
+  font-size: 16px;
+  padding-bottom: 24px;
+}
+
+.ps5 {
+  background-image: url("../images/carousell-images/playstation5.png");
+  grid-area: a;
+}
+
+.gucci {
+  background-image: url("../images/carousell-images/gucci-perfume.png");
+  grid-area: b;
+  padding-bottom: 16px !important;
+}
+
+.gucci :last-child {
+  padding-bottom: 8px !important;
+}
+
+.speakers {
+  background-image: url("../images/carousell-images/speakers.png");
+  grid-area: c;
+  padding-bottom: 16px !important;
+}
+
+.speakers :last-child {
+  padding-bottom: 8px !important;
+}
+
+.women-hat {
+  background-image: url("../images/carousell-images/woman-with-hat.png");
+  grid-area: d;
+}
+
+.we-deliver {
+  margin-top: 140px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  gap: 60px;
+}
+
+.we-deliver div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.we-deliver h4 {
+  font-weight: 600px;
+  font-size: 24px;
+}
+
+.we-deliver h3 {
+  font-weight: 400px;
+  font-size: 16px;
+}
+
+@media (max-width: 750px) {
+  .main-grid-container {
+    grid-template-areas:
+      " a a "
+      " a a "
+      " d d "
+      " c b";
+  }
+}
+
+/* Oruj Homepage new arrivals End */
+
+/* SALIH HOMEPAGE EXPLORE PRODUCTS START */
+.our-container {
+  margin: 0 auto;
+  max-width: 1300px;
+  margin-top: 20px;
+}
+
+.oursymbol-text {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.our-symbol {
+  width: 20px;
+  height: 40px;
+  background-color: rgba(219, 68, 68, 1);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.ourmini-text-container {
+  font-size: 16px;
+  color: rgba(219, 68, 68, 1);
+  font-family: "Poppins", serif;
+  line-height: 20px;
+}
+
+.explore-our {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  font-family: "Inter", serif;
+  font-size: 36px;
+  line-height: 48px;
+  letter-spacing: 4%;
+  color: rgba(0, 0, 0, 1);
+}
+.back-next-button {
+  margin-bottom: 30px;
+}
+
+.backbutton {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ccc;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nextbutton {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ccc;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.explore-div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, auto);
+  width: 100%;
+  gap: 50px;
+  margin: 0 auto;
+  max-width: 1300px;
+}
+
+.product-image {
+  width: 270px;
+  height: 250px;
+  object-fit: scale-down;
+  width: 100%;
+}
+.image-container {
+  width: 100%;
+  height: 250px;
+  position: relative;
+}
+
+.product-title {
+  font-size: 16px;
+  font-family: "Poppins", serif;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.rating-score {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 16px;
+  font-family: "Poppins", serif;
+  gap: 10px;
+}
+
+.product-price {
+  font-size: 16px;
+  font-family: "Poppins", serif;
+  color: #db4444;
+}
+
+.view-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.view-button {
+  width: 234px;
+  height: 56px;
+  background-color: rgba(219, 68, 68, 1);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: "Poppins", serif;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 1);
+  color: #ffffff;
+  transition: 0.5s ease;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 0;
+  border-radius: 4px;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+  height: 25%;
+}
+
+.text {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 1300px) {
+  .explore-div {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 100px;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .explore-our {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 30px;
+    font-family: "Inter", serif;
+    font-size: 36px;
+    line-height: 48px;
+    letter-spacing: 4%;
+    color: rgba(0, 0, 0, 1);
+  }
+  .back-next-button {
+    margin-right: 130px;
+    margin-bottom: 30px;
+    margin-left: 0;
+  }
+}
+/* SALIH HOMEPAGE EXPLORE PRODUCTS END */
