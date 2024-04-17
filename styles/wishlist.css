@@ -199,11 +199,9 @@
 .wishlist-items-container {
   display: grid;
   /* grid-template-columns: repeat(4, 270px); */
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   width: 100%;
-  gap: 20px;
-  justify-content: start;
-  flex-wrap: wrap;
+  gap: 40px;
   margin: 0 auto;
   margin-top: 60px;
   justify-items: center;
@@ -215,8 +213,8 @@
   justify-content: flex-start; */
   align-items: center;
   justify-content: center;
-  width: 270px;
   position: relative;
+  width: 100%;
 }
 
 #delete-icon {
