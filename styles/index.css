@@ -468,6 +468,130 @@
 }
 /* Oruj - Special product*/
 
+/* Oruj Homepage new arrivals start */
+.categories-header {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0px 30px;
+}
+
+.header-h3-style {
+  font-size: 36px;
+}
+
+.homepage-new-arrivals {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.main-grid-container {
+  color: white;
+  display: grid;
+  grid-template-areas:
+    " a a d d "
+    " a a c b";
+  column-gap: 30px;
+  row-gap: 32px;
+  margin: 0 30px;
+  margin-top: 60px;
+}
+
+.maing-grid-container img {
+  object-fit: cover;
+}
+
+.main-grid-container > div {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  min-height: 250px;
+  border-radius: 4px;
+  padding: 16px 24px 0px 24px;
+}
+
+.main-grid-container > div h4 {
+  font-size: 24px;
+  font-weight: 600px;
+}
+.main-grid-container > div :last-child {
+  text-decoration: underline;
+  font-size: 16px;
+  padding-bottom: 24px;
+}
+
+.ps5 {
+  background-image: url("../images/carousell-images/playstation5.png");
+  grid-area: a;
+}
+
+.gucci {
+  background-image: url("../images/carousell-images/gucci-perfume.png");
+  grid-area: b;
+  padding-bottom: 16px !important;
+}
+
+.gucci :last-child {
+  padding-bottom: 8px !important;
+}
+
+.speakers {
+  background-image: url("../images/carousell-images/speakers.png");
+  grid-area: c;
+  padding-bottom: 16px !important;
+}
+
+.speakers :last-child {
+  padding-bottom: 8px !important;
+}
+
+.women-hat {
+  background-image: url("../images/carousell-images/woman-with-hat.png");
+  grid-area: d;
+}
+
+.we-deliver {
+  margin-top: 140px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  gap: 60px;
+}
+
+.we-deliver div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.we-deliver h4 {
+  font-weight: 600px;
+  font-size: 24px;
+}
+
+.we-deliver h3 {
+  font-weight: 400px;
+  font-size: 16px;
+}
+
+@media (max-width: 750px) {
+  .main-grid-container {
+    grid-template-areas:
+      " a a "
+      " a a "
+      " d d "
+      " c b";
+  }
+}
+
+/* Oruj Homepage new arrivals End */
+
+
 /* SALIH HOMEPAGE EXPLORE PRODUCTS START */
 .our-container {
   margin: 0 auto;
@@ -653,3 +777,4 @@
   }
 }
 /* SALIH HOMEPAGE EXPLORE PRODUCTS END */
+
