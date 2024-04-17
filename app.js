@@ -16,6 +16,12 @@ const hamburgerBarCloser = document.getElementById("hamburger-bar-closer");
 
 const catContainer = document.getElementById("cat-container");
 
+const cartQuantityCircle = document.getElementById("cart-quantity-identicator");
+
+const wishlistQuantity = document.getElementById(
+  "wishlist-quantity-identicator"
+);
+
 let containerItems = [
   { src: "cat-camera.svg", title: "Camera" },
   { src: "cat-celphone.svg", title: "Cellphone" },
@@ -50,6 +56,7 @@ async function getAllProducts() {
   loadContainer();
   specialContentUpdater();
   timer24(86399);
+  updateIdenticatorIcons();
 }
 
 hamburgerBar.addEventListener("click", () => {
@@ -59,6 +66,13 @@ hamburgerBar.addEventListener("click", () => {
 hamburgerBarCloser.addEventListener("click", () => {
   hamburgerBarContents.classList.remove("hamburger-bar-toggled");
 });
+
+function updateIdenticatorIcons() {
+  wishlistItems = JSON.parse(localStorage.getItem("wishlistProducts")) || [];
+  cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
+  wishlistQuantity.innerText = wishlistItems.length;
+  cartQuantityCircle.innerText = cartItems.length;
+}
 
 let images = [
   "/images/carousell-images/iphonee.svg",
