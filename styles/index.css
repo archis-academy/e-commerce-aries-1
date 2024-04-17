@@ -525,12 +525,12 @@
 }
 
 .ps5 {
-  background-image: url("/images/playstation5.png");
+  background-image: url("../images/carousell-images/playstation5.png");
   grid-area: a;
 }
 
 .gucci {
-  background-image: url("/images/gucci-perfume.png");
+  background-image: url("../images/carousell-images/gucci-perfume.png");
   grid-area: b;
   padding-bottom: 16px !important;
 }
@@ -540,7 +540,7 @@
 }
 
 .speakers {
-  background-image: url("/images/speakers.png");
+  background-image: url("../images/carousell-images/speakers.png");
   grid-area: c;
   padding-bottom: 16px !important;
 }
@@ -550,7 +550,7 @@
 }
 
 .women-hat {
-  background-image: url("/images/woman-with-hat.png");
+  background-image: url("../images/carousell-images/woman-with-hat.png");
   grid-area: d;
 }
 
