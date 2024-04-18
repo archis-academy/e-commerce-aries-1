@@ -293,6 +293,7 @@ function addToCart(productId) {
     deleteCartProduct(productId, cartItems);
     addButton.textContent = "Add To Cart";
   }
+  updateIdenticatorIcons();
 }
 
 function deleteCartProduct(productId, cartItems) {
