@@ -289,10 +289,14 @@ function addToCart(productId) {
       "cartProducts",
       JSON.stringify([...cartItems, productToAddNew])
     );
-    addButton.textContent = "Remove From Cart";
+    if (addButton === null) {
+      addButton.textContent = "Remove From Cart";
+    }
   } else {
     deleteCartProduct(productId, cartItems);
-    addButton.textContent = "Add To Cart";
+    if (addButton === null) {
+      addButton.textContent = "Add To Cart";
+    }
   }
   updateIdenticatorIcons();
 }
