@@ -42,7 +42,6 @@ const addToCartButton = document.getElementById("add-to-cart-button");
 
 let allProducts = [];
 let randomElement = {};
-getAllProducts();
 
 async function getAllProducts() {
   try {
@@ -53,11 +52,13 @@ async function getAllProducts() {
   } catch (error) {
     console.error(error);
   }
+  renderBestProducts();
   loadContainer();
   specialContentUpdater();
   timer24(86399);
   updateIdenticatorIcons();
 }
+getAllProducts();
 
 hamburgerBar.addEventListener("click", () => {
   hamburgerBarContents.classList.add("hamburger-bar-toggled");
@@ -327,24 +328,13 @@ function backBtn() {
 
 const productsContainer = document.querySelector("#bestProducts");
 
-let bestProducts = [];
-
-async function getProducts() {
-  const response = await fetch("https://fakestoreapi.com/products");
-  const data = await response.json();
-  bestProducts = data;
-  renderBestProducts();
-}
-
-getProducts();
-
 /* SALIH BEST SELLING PRODUCTS  */
 
 let bestStart = 0;
 let bestEnd = 4;
 
 function renderBestProducts() {
-  const productHTML = bestProducts
+  const productHTML = allProducts
     .slice(bestStart, bestEnd)
     .map((product, index) => {
       let discountedPrice = product.price;
@@ -410,7 +400,7 @@ function addToCart(productId) {
   const addButton = document.querySelector(`#addToCart_${productId}`);
 
   if (!isAdded) {
-    const productToAdd = bestProducts.find(
+    const productToAdd = allProducts.find(
       (product) => product.id === productId
     );
 
@@ -431,8 +421,8 @@ function deleteCartProduct(productId, cartItems) {
   localStorage.setItem("cartProducts", JSON.stringify(filteredItems));
 }
 
-function viewAll() {
-  bestEnd = bestProducts.length;
+function viewBestAll() {
+  bestEnd = allProducts.length;
   bestStart = 0;
   renderBestProducts();
 }
