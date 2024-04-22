@@ -1,7 +1,6 @@
 const productsContainer = document.querySelector("#productsContainer");
-// const productsContainer = document.getElementById("#productsContainer");
-// Niçin getelementByid kullanıldığında çalışmıyor.
 
+console.log(productsContainer);
 let allProducts = [];
 
 async function getProducts() {
@@ -34,14 +33,19 @@ function renderTodaysProducts() {
 <h4 class="discount-rate">-40%</h4>
 <img class="product-image" src="${product.image}" alt="${product.title}" /> 
 <div class="icons-container">
+
 <button class="wishlist-btn" onclick="addToWishlist(${
         product.id
       })"><i class="fa-regular fa-heart"></i></button>
-<button class="add-to-cart-btn" onclick="addToCart(${
+
+<button class="add-to-cart" id="add-to-cart-${product.id}" onclick="addToCart(${
         product.id
       })"><i class="fa-solid fa-cart-shopping"></i></button>
 
-</div>
+<button class="rem-from-cart" onclick="remFromCart(${
+        product.id
+      })"><img class="trash" height= "25" width="25" src="../images/trash.svg"></img> </button>
+        </div>
 </div>
 
 <h3 class="product-title">  ${productText(product.title)}</h3>
@@ -51,7 +55,6 @@ function renderTodaysProducts() {
 <span>${getStars(product.rating.rate)}</span> <span>(${
         product.rating.count
       })</span>
-
 </div>
 </div>`;
     })
@@ -59,6 +62,7 @@ function renderTodaysProducts() {
 
   productsContainer.innerHTML = productHTML;
 }
+
 function todaysNavigationClick(direction) {
   const increment = direction === "next" ? 1 : -1;
   todaysStart += increment;
@@ -76,12 +80,10 @@ function todaysNavigationClick(direction) {
   }
   renderTodaysProducts();
 }
-const intStarRating = (value) => {
-  return Math.round(value);
-};
+
 function getStars(rating) {
   let stars = ``;
-  for (let i = 0; i < rating.toFixed(0); i++) {
+  for (let i = 0; i < Math.round(rating); i++) {
     stars += `<i class="fa-solid fa-star"></i>`;
   }
   return stars;
@@ -121,9 +123,48 @@ function addToWishlist(productId) {
     const updatedWishlist = wishlistProducts.filter(
       (product) => product.id !== productId
     );
-
     localStorage.setItem("wishlistProducts", JSON.stringify(updatedWishlist));
   }
+}
+
+let cartProducts = [];
+
+function addToCart(productId) {
+ 
+  const selectedProduct = allProducts.find((product) => {
+    return product.id === productId;
+     });
+    cartProducts.push(selectedProduct);
+    
+  localStorage.setItem("SepeteEkle", JSON.stringify(cartProducts));
+  alert(
+    `${selectedProduct.id} 'li eklendi. Şimdi sepette toplam ${cartProducts.length}  ürün var`
+  );
+}
+
+function remFromCart(productId) {
+ 
+  const selectedProduct = cartProducts.find((product) => {
+    return product.id === productId;
+      });
+
+  if(selectedProduct){
+    let cartProductsFromStorage = JSON.parse(localStorage.getItem("SepeteEkle"));
+      const filteredItems = cartProductsFromStorage.filter(
+        (product) => product.id !== productId
+      );
+      localStorage.setItem("SepeteEkle", JSON.stringify(filteredItems));
+     
+      const indexProduct = cartProducts.indexOf(productId);
+     cartProducts = filteredItems;
+         alert(
+        `${selectedProduct.id} 'li çıkarıldı. Şimdi sepette ${cartProducts.length} ürün var`
+      );
+   } else {
+
+  alert("Ürün Sepette Yok");
+}
+
 }
 
 getProducts();
