@@ -171,15 +171,44 @@
 }
 
 .image {
-  width: 50vw;
+  width: clamp(500px, 50vw, 1000px);
 }
 
 .container {
   display: flex;
+  max-width: 1300px;
+  margin: 0 auto;
   gap: 40px;
   align-items: center;
   height: fit-content;
   padding: 20px;
+}
+
+@media (max-width: 800px) {
+  .image {
+    width: 50vw;
+  }
+}
+@media (max-width: 500px) {
+  .image {
+    width: 100%;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .user-input {
+    width: 90%;
+  }
+  .search-bar-icon {
+    justify-content: center;
+    width: 100%;
+  }
+  .search-bar {
+    width: 100%;
+  }
+  .search-icon {
+    left: 40px;
+  }
 }
 
 .container-3 {
