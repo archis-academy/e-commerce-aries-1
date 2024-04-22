@@ -16,8 +16,6 @@ const login = document.getElementById("login-btn");
 
 login.addEventListener("click", () => {
   if (username.value.length !== 0 && password.value.length !== 0) {
-    console.log(username.value);
-    console.log(password.value);
     location.href = "index.html";
   } else {
     if (username.value.length === 0) {
