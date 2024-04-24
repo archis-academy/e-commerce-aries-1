@@ -166,5 +166,4 @@ function remFromCart(productId) {
 }
 
 }
-
 getProducts();
